@@ -1,7 +1,8 @@
 LATEX = lualatex
 LATEX_OPT := -interaction=nonstopmode
 ENV_VAR := export max_print_line=1000;
-FILECONTENTS = anatomy-of* using-a-* java-* recursive-with-bug*
+# FILECONTENTS = anatomy-of* using-a-* java-* recursive-with-bug*
+PACKAGE := sunpath
 
 .PHONY: doc
 doc:
@@ -14,15 +15,16 @@ clean:
 	rm -f *.zip
 	rm -fv *.idx *.aux *.glo *.hd *.out *.bcf *.dvi *.run.xml *.toc
 	rm -fv *.bbl *.blg *.synctex.gz
-	rm -fv codeanatomy.sty codeanatomy-ctan.curlopt
-	rm -fv codeanatomy.*.pdf
-	rm -fv $(FILECONTENTS)
+	rm -fv $(PACKAGE) $(PACKAGE)-ctan.curlopt
+	rm -fv $(PACKAGE).*.pdf
+	rm -fv $(PACKAGE).sty
+	#rm -fv $(FILECONTENTS)
 
 .PHONY: debug
 debug:
 	make clean;
 	make doc;
-	$(LATEX) codeanatomy.ins
+	$(LATEX) $(PACKAGE).ins
 	
 	
 .PHONY: ctan

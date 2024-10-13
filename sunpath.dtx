@@ -32,3 +32,82 @@
 
 \usepackage{fontspec}
 \usepackage{luaotfload}
+
+
+\usepackage{sunpath}
+\EnableCrossrefs
+\CodelineIndex
+\RecordChanges
+
+\begin{document}
+  \DocInput{\jobname.dtx}
+\end{document}
+%</driver>
+% \fi
+%
+% \GetFileInfo{\jobname.sty}
+% \DoNotIndex{\definecolor, \colorlet}
+% \DoNotIndex{\NewDocumentCommand, \node}
+% \DoNotIndex{\phantom}
+% \DoNotIndex{\RequirePackage, \rule}
+% \DoNotIndex{\small, \sffamily}
+% \DoNotIndex{\textcolor, \tikzmarknode, \tikzset, \ttfamily}
+% \DoNotIndex{\usetikzlibrary}
+%
+% \title{^^A
+%   \pkg{codeanatomy} -- Draw Code Anatomy^^A
+%   \thanks{This file describes \fileversion, ^^A
+%     last revised \filedate.}\\[1ex]^^A
+%     \normalsize{Reference}^^A
+% }^^A
+%
+% \author{^^A
+%  Hồng-Phúc Bùi^^A
+%  \thanks{^^A
+%    E-mail:
+%    \href{mailto:Hồng-Phúc Bùi}
+%      {hong-phuc.bui (at) htwsaar dot de}^^A
+%   }^^A
+% }
+%
+% \date{Released \filedate}
+%
+% \parindent0pt
+%
+% \maketitle
+% \tableofcontents
+%
+% \section{Hints}
+% Usage of this Package can be found in \texttt{sunpath.usage.pdf}.
+% This document show only generated reference of commands in this Package.
+%
+% ^^A %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \section{Implementation}
+%
+% \changes{v0.1-Alpha}
+%         {2024/10/10}
+%         {Initial implementation}
+%
+%
+% \subsection{Package Dependenies}
+%
+%    \begin{macrocode}
+\RequirePackage{expl3}
+\RequirePackage{tikz}
+%    \end{macrocode}
+%
+
+
+% ^^A%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \section{Known Bugs}
+%
+%    
+%
+% ^^A%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \PrintIndex
+% \PrintChanges
+%
+\endinput
+
+
+
