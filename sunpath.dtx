@@ -14,7 +14,7 @@
 %
 % The development version of the bundle can be found at
 %
-%    https://github.com/hpb-htw/codeanatomy
+%    https://github.com/hpb-htw/sunpath
 %
 % for those people who are interested.
 %
@@ -23,7 +23,7 @@
 %
 % \iffalse
 %<package>\NeedsTeXFormat{LaTeX2e}[2018/12/01]
-%<package>\ProvidesPackage{codeanatomy}[2023/01/24 v0.4-Beta draw Code Anatomy]
+%<package>\ProvidesPackage{sunpath}[2024/10/10 v0.1-Alpha Draw Sun Path]
 % \fi
 %
 % \iffalse
@@ -32,30 +32,22 @@
 
 \usepackage{fontspec}
 \usepackage{luaotfload}
+\usepackage{tikz}
 
-
-\usepackage{sunpath}
-\EnableCrossrefs
-\CodelineIndex
-\RecordChanges
 
 \begin{document}
   \DocInput{\jobname.dtx}
+  % ^^A%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \PrintChanges
+  \PrintIndex
 \end{document}
 %</driver>
 % \fi
 %
-% \GetFileInfo{\jobname.sty}
-% \DoNotIndex{\definecolor, \colorlet}
-% \DoNotIndex{\NewDocumentCommand, \node}
-% \DoNotIndex{\phantom}
-% \DoNotIndex{\RequirePackage, \rule}
-% \DoNotIndex{\small, \sffamily}
-% \DoNotIndex{\textcolor, \tikzmarknode, \tikzset, \ttfamily}
-% \DoNotIndex{\usetikzlibrary}
+%
 %
 % \title{^^A
-%   \pkg{codeanatomy} -- Draw Code Anatomy^^A
+%   \pkg{sunpath} -- Draw Sun Path^^A
 %   \thanks{This file describes \fileversion, ^^A
 %     last revised \filedate.}\\[1ex]^^A
 %     \normalsize{Reference}^^A
@@ -96,17 +88,125 @@
 \RequirePackage{tikz}
 %    \end{macrocode}
 %
+% Load necsessary \texttt{tikz}-libraries.
+%    \begin{macrocode}
+\usetikzlibrary{calc,math,through}
+%    \end{macrocode}
+
+%     Setup  options for tikzpicture environment
+%
+%
+%
+%
+\pgfkeys{/tikz/.cd,
+  spradius/.store in=\spradius,
+  spradius=5.5,
+  altitude projection/.store in = \spprojection,
+  altitude projection=spherical
+}
+
+% Define component azi and alt for the coordinate system \texttt{sunpath}
+\makeatletter
+\tikzset{
+  cs/azi/.store in=\tikz@cs@azi,
+  cs/alt/.store in=\tikz@cs@alt,
+  declare function = {
+      spherical(\alt) = \spradius * cos(\alt);
+      equidistance(\alt) = \spradius - \spradius*\alt/90;
+      altradius(\alt) = \spprojection(\alt); 
+      aziangle(\x) = 90 - \x;
+  }
+} 
+
+\tikzdeclarecoordinatesystem{sunpath}% ^^A
+{
+    \tikzset{cs/.cd,azi=0,alt=0,#1}
+    \tikzmath{      
+      \r = altradius(\tikz@cs@alt);
+      \angle = aziangle(\tikz@cs@azi);
+    }
+    \pgfpointadd{\pgfpointxy{0}{0}}{% ^^A        
+        \pgfpointpolarxy{\angle}{\r}
+    }
+}
+\makeatother 
+
+%
+\tikzset{
+  sunpath grid/.style={help lines,color=blue!45!white!80},
+  sunpath tick/.style={draw,thick,color=blue!90!white!80},
+  sunpath minor tick/.style={draw,thin,color=blue!90!white!80},
+  altitude label/.style={font=\footnotesize\sffamily,fill=white,minimum width={width("90")+2pt},inner sep=0.5pt},
+  azimuth label/.style={font=\footnotesize\sffamily,minimum width={width("360")+2pt},inner sep=0.5pt},
+}
 
 
-% ^^A%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% \section{Known Bugs}
-%
-%    
-%
-% ^^A%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% \PrintIndex
-% \PrintChanges
-%
+\NewDocumentCommand\drawgeodirection{}{
+  \foreach \dname / \dgrad \ in {N/0, E/90, S/180, W/270}{
+      \tikzmath{
+        \polarangle = aziangle(\dgrad);
+      }
+      \coordinate (D) at (\polarangle:\spradius cm + 22pt);
+      \node[anchor=270-\dgrad] at (D) {\dname};
+  };
+}
+
+
+\NewDocumentCommand\drawaltitudecirle{m}{
+  \foreach \altitude in #1 {
+    \coordinate (A) at (sunpath cs:azi=0,alt=\altitude) ;  
+    \path[draw,sunpath grid] (0,0) circle[radius=altradius(\altitude)];
+  }
+}
+
+
+\NewDocumentCommand\drawaltitudelabel{m}{
+  \foreach \altitude in #1 {
+      \coordinate (A) at (sunpath cs:azi=0,alt=\altitude) ;      
+      \node [anchor=east,altitude label] at (A) {\altitude};  
+    }
+}
+
+\NewDocumentCommand\drawazimuthlabel{m}{
+  \foreach \azimuth in #1 {
+      \tikzmath{
+        \polarangle = aziangle(\azimuth);
+      }
+      \coordinate (D) at (\polarangle:\spradius cm + 13pt);
+      \node[azimuth label] at (D) {\azimuth};
+  }
+}
+
+
+\NewDocumentCommand\drawazimuthline{m m m}{
+  \foreach \azimuth in #1{
+      \draw[sunpath grid] (sunpath cs:azi=\azimuth,alt={#2}) -- (sunpath cs:azi=\azimuth,alt={#3});
+  }
+}
+
+
+\NewDocumentCommand\drawazimuthtick{}{
+  \foreach \azimuth in {10,20,...,360}{
+    \tikzmath{      
+        \pa = aziangle(\azimuth);
+    }
+    \path[sunpath tick] (\pa:\spradius) -- (\pa:{\spradius cm+6pt});
+  }
+  
+  \foreach \azimuth in {1,2,...,360}{
+    \tikzmath{      
+        \pa = aziangle(\azimuth);
+    }
+    \path[sunpath minor tick] (\pa:\spradius) -- (\pa:{\spradius cm+2.5pt});
+  }
+  
+  \foreach \azimuth in {15,30,...,360}{
+      \tikzmath{      
+          \pa = aziangle(\azimuth);
+      }
+      \path[sunpath minor tick] (\pa:\spradius) -- (\pa:{\spradius cm+5pt});
+    }  
+}
 \endinput
 
 

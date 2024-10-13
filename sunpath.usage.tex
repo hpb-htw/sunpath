@@ -1,138 +1,10 @@
-\documentclass{article}
-\usepackage{tikz}
+\documentclass[DIV=11]{scrartcl}
 
-\usetikzlibrary{calc,math}
-\usetikzlibrary[through]
+\usepackage{sunpath}
 
 
 \begin{document}
-\makeatletter
-%% Radius of the 0-grad Altitude Circle of the sunpath diagram.
-%% Its unit is default unit of PGF xy Coordinate
-%% Default 5.5  (=5.5cm for nomal scale of an tikzpicture)
-\pgfkeys{/tikz/.cd,
-  spradius/.store in=\spradius,
-  spradius=5.5,                  %% initial value, in PGF xy Coordinate
-  altitude projection/.store in = \spprojection,
-  altitude projection=spherical
-}
-% set azi (=azimuth) und alt (=altitude)
-\tikzset{
-  cs/azi/.store in=\tikz@cs@azi,
-  cs/alt/.store in=\tikz@cs@alt,
-  declare function = {
-      spherical(\alt) = \spradius * cos(\alt);
-      equidistance(\alt) = \spradius - \spradius*\alt/90;
-      altradius(\alt) = \spprojection(\alt); 
-      aziangle(\x) = 90 - \x;
-  }
-}
-
-%% Define the new coordinate system sunpath
-%% Usage example:
-%% 
-%% \coordinate (sunpath cs:azi=110,alt=65); 
-%%
-\tikzdeclarecoordinatesystem{sunpath}%
-{
-    \tikzset{cs/.cd,azi=0,alt=0,#1}
-    \tikzmath{
-      %\r = \spradius - \spradius*\tikz@cs@alt/90;
-      \r = altradius(\tikz@cs@alt);
-      \angle = aziangle(\tikz@cs@azi);
-    }
-    \pgfpointadd{\pgfpointxy{0}{0}}{% Origin
-        %\pgfpointpolarxy{90-\tikz@cs@azi}{\r}
-        \pgfpointpolarxy{\angle}{\r}
-    }
-}
-
-
-%% Optical styles
-\tikzset{
-%% Grid of diagram (used for azimuth lines and altitude circles)
-  sunpath grid/.style={help lines,color=blue!45!white!80},
-%% Azimuth ticks around the 0-degree-altidude circle
-  sunpath tick/.style={draw,thick,color=blue!90!white!80},
-%% Azimuth minor ticks  
-  sunpath minor tick/.style={draw,thin,color=blue!90!white!80},
-%% Format for the label of the altitude values
-  altitude label/.style={font=\footnotesize\sffamily,fill=white,minimum width={width("90")+2pt},inner sep=0.5pt},
-  azimuth label/.style={font=\footnotesize\sffamily,minimum width={width("360")+2pt},inner sep=0.5pt},
-}
-
-%% Place 4 geographie direction on the diagram
-\newcommand{\drawgeodirection}{
-  \foreach \dname / \dgrad \ in {N/0, E/90, S/180, W/270}{
-      \tikzmath{
-        \polarangle = aziangle(\dgrad);
-      }
-      \coordinate (D) at (\polarangle:\spradius cm + 22pt);
-      \node[anchor=270-\dgrad] at (D) {\dname};
-  };
-}
-
-%% Draw altitude circles at given altitude, for example {0,10,...,80} or {0,15,...,90}
-\newcommand{\drawaltitudecirle}[1]{
-  \foreach \altitude in #1 {
-    \coordinate (A) at (sunpath cs:azi=0,alt=\altitude) ;  
-    \path[draw,sunpath grid] (0,0) circle[radius=altradius(\altitude)];
-  }
-}
-
-%% Draw altitude value at given altitude, for example {0,10,...,80} or {0,15,...,90}
-%% The altitude value are placed along the line from (0,0) to Nord
-\newcommand{\drawaltitudelabel}[1]{
-  \foreach \altitude in #1 {
-      \coordinate (A) at (sunpath cs:azi=0,alt=\altitude) ;      
-      \node [anchor=east,altitude label] at (A) {\altitude};  
-    }
-}
-
-\newcommand{\drawazimuthlabel}[1]{
-  \foreach \azimuth in #1 {
-      \tikzmath{
-        \polarangle = aziangle(\azimuth);
-      }
-      \coordinate (D) at (\polarangle:\spradius cm + 13pt);
-      \node[azimuth label] at (D) {\azimuth};
-  }
-}
-
-
-%% Draw azimuth lines from center of the diagram to the 0-grad altitude
-\newcommand{\drawazimuthline}[3]{
-  \foreach \azimuth in #1{
-      \draw[sunpath grid] (sunpath cs:azi=\azimuth,alt={#2}) -- (sunpath cs:azi=\azimuth,alt={#3});
-  }
-}
-
-%% Draw major and minor azimuth ticks around the 0-grad altitude circle
-\newcommand{\drawazimuthtick}{
-  \foreach \azimuth in {10,20,...,360}{
-    \tikzmath{      
-        \pa = aziangle(\azimuth);
-    }
-    \path[sunpath tick] (\pa:\spradius) -- (\pa:{\spradius cm+6pt});
-  }
-  
-  \foreach \azimuth in {1,2,...,360}{
-    \tikzmath{      
-        \pa = aziangle(\azimuth);
-    }
-    \path[sunpath minor tick] (\pa:\spradius) -- (\pa:{\spradius cm+2.5pt});
-  }
-  
-  \foreach \azimuth in {15,30,...,360}{
-      \tikzmath{      
-          \pa = aziangle(\azimuth);
-      }
-      \path[sunpath minor tick] (\pa:\spradius) -- (\pa:{\spradius cm+5pt});
-    }  
-}
-
-
-\begin{tikzpicture}[spradius=6]%[x=5cm,y=5cm,spradius=1]
+\begin{tikzpicture}[spradius=5.5]%[x=5cm,y=5cm,spradius=1]
 \drawaltitudecirle{{0,10,...,80,85}}
 \drawazimuthline{{0,10,...,360}}{85}{70}
 \drawazimuthline{{0,5,...,360}}{80}{0}
@@ -156,50 +28,9 @@
 \drawaltitudelabel{{10,20,...,80}}
 \drawazimuthlabel{{0,15,...,350}} ;  
 \end{tikzpicture}
+
+
+Test @ abc
+
 \end{document}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
