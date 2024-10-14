@@ -93,19 +93,30 @@
 \usetikzlibrary{calc,math,through}
 %    \end{macrocode}
 
-%     Setup  options for tikzpicture environment
+% \subsection{\texttt{tikz}-Options for the new coordinate system}
+% Setup  options for tikzpicture environment
 %
 %
 %
-%
+%    \begin{macrocode}
 \pgfkeys{/tikz/.cd,
   spradius/.store in=\spradius,
   spradius=5.5,
   altitude projection/.store in = \spprojection,
   altitude projection=spherical
 }
+%    \end{macrocode}
+% These options can be used like 
+% 
+% \verb|\begin{tikzpicture}[spradius=6,altitude projection=equidistance]|
 
-% Define component azi and alt for the coordinate system \texttt{sunpath}
+% \subsection{Define the new coordinate system \texttt{sunpath}}
+%
+% Define component \texttt{azi} and \texttt{alt} for the coordinate system \texttt{sunpath}.
+% They can be used like:
+%
+% \verb|\coordinate (A) at (sunpath cs:azi=110,alt=66);|
+%    \begin{macrocode}
 \makeatletter
 \tikzset{
   cs/azi/.store in=\tikz@cs@azi,
@@ -118,29 +129,43 @@
   }
 } 
 
-\tikzdeclarecoordinatesystem{sunpath}% ^^A
+\tikzdeclarecoordinatesystem{sunpath}%
 {
     \tikzset{cs/.cd,azi=0,alt=0,#1}
     \tikzmath{      
       \r = altradius(\tikz@cs@alt);
       \angle = aziangle(\tikz@cs@azi);
     }
-    \pgfpointadd{\pgfpointxy{0}{0}}{% ^^A        
+    \pgfpointadd{\pgfpointxy{0}{0}}{%
         \pgfpointpolarxy{\angle}{\r}
     }
 }
 \makeatother 
-
+%    \end{macrocode}
 %
+% \subsection{Setup optical options for sunpath diagram}
+%    \begin{macrocode}
 \tikzset{
   sunpath grid/.style={help lines,color=blue!45!white!80},
   sunpath tick/.style={draw,thick,color=blue!90!white!80},
   sunpath minor tick/.style={draw,thin,color=blue!90!white!80},
-  altitude label/.style={font=\footnotesize\sffamily,fill=white,minimum width={width("90")+2pt},inner sep=0.5pt},
-  azimuth label/.style={font=\footnotesize\sffamily,minimum width={width("360")+2pt},inner sep=0.5pt},
+  altitude label/.style={
+      font=\footnotesize\sffamily,
+      fill=white,minimum width={width("90")+2pt},
+      inner sep=0.5pt
+  },
+  azimuth label/.style={
+      font=\footnotesize\sffamily,
+      minimum width={width("360")+2pt},
+      inner sep=0.5pt
+  },
 }
-
-
+%    \end{macrocode}
+%
+%
+% \subsection{Expose some commands for end-user}
+%
+%    \begin{macrocode}
 \NewDocumentCommand\drawgeodirection{}{
   \foreach \dname / \dgrad \ in {N/0, E/90, S/180, W/270}{
       \tikzmath{
@@ -150,23 +175,30 @@
       \node[anchor=270-\dgrad] at (D) {\dname};
   };
 }
-
-
+%    \end{macrocode}
+%
+%
+%    \begin{macrocode}
 \NewDocumentCommand\drawaltitudecirle{m}{
   \foreach \altitude in #1 {
     \coordinate (A) at (sunpath cs:azi=0,alt=\altitude) ;  
     \path[draw,sunpath grid] (0,0) circle[radius=altradius(\altitude)];
   }
 }
-
-
+%    \end{macrocode}
+%
+%
+%    \begin{macrocode}
 \NewDocumentCommand\drawaltitudelabel{m}{
   \foreach \altitude in #1 {
       \coordinate (A) at (sunpath cs:azi=0,alt=\altitude) ;      
       \node [anchor=east,altitude label] at (A) {\altitude};  
     }
 }
-
+%    \end{macrocode}
+%
+%
+%    \begin{macrocode}
 \NewDocumentCommand\drawazimuthlabel{m}{
   \foreach \azimuth in #1 {
       \tikzmath{
@@ -176,15 +208,19 @@
       \node[azimuth label] at (D) {\azimuth};
   }
 }
-
-
+%    \end{macrocode}
+%
+%
+%    \begin{macrocode}
 \NewDocumentCommand\drawazimuthline{m m m}{
   \foreach \azimuth in #1{
       \draw[sunpath grid] (sunpath cs:azi=\azimuth,alt={#2}) -- (sunpath cs:azi=\azimuth,alt={#3});
   }
 }
-
-
+%    \end{macrocode}
+%
+%
+%    \begin{macrocode}
 \NewDocumentCommand\drawazimuthtick{}{
   \foreach \azimuth in {10,20,...,360}{
     \tikzmath{      
@@ -207,7 +243,11 @@
       \path[sunpath minor tick] (\pa:\spradius) -- (\pa:{\spradius cm+5pt});
     }  
 }
+%    \end{macrocode}
+%
+%
+%%%%%%%%%%%%%%
 \endinput
-
+%%%%%%%%%%%%%%
 
 
