@@ -4,7 +4,8 @@
 
 
 \begin{document}
-\begin{tikzpicture}[spradius=5.5]%[x=5cm,y=5cm,spradius=1]
+\begin{tikzpicture}[spradius=5.5]
+\drawcrosshair;
 \drawaltitudecirle{{0,10,...,80,85}}
 \drawazimuthline{{0,10,...,360}}{85}{70}
 \drawazimuthline{{0,5,...,360}}{80}{0}
@@ -17,7 +18,7 @@
 \end{tikzpicture}
 
 
-\begin{tikzpicture}[spradius=6,altitude projection=equidistance]%[x=5cm,y=5cm,spradius=1]
+\begin{tikzpicture}[spradius=6,altitude projection=equidistance]
 \drawaltitudecirle{{0,10,...,80}}
 
 \drawazimuthline{{0,10,...,360}}{80}{0}

@@ -34,8 +34,13 @@
 \usepackage{luaotfload}
 \usepackage{tikz}
 
+\usepackage{sunpath}
+\EnableCrossrefs
+\CodelineIndex
+\RecordChanges
 
 \begin{document}
+%        sunpath.docpart.tex  
   \DocInput{\jobname.dtx}
   % ^^A%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   \PrintChanges
@@ -45,6 +50,7 @@
 % \fi
 %
 %
+% \GetFileInfo{\jobname.sty}
 %
 % \title{^^A
 %   \pkg{sunpath} -- Draw Sun Path^^A
@@ -68,10 +74,12 @@
 %
 % \maketitle
 % \tableofcontents
-%
+% 
 % \section{Hints}
-% Usage of this Package can be found in \texttt{sunpath.usage.tex}.
+% More details about usage of this Package can be found in \texttt{sunpath.usage.tex}.
 % This document show only generated reference of commands in this Package.
+%
+% \input{sunpath.docpart.tex}
 %
 % ^^A %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % \section{Implementation}
@@ -93,34 +101,78 @@
 \usetikzlibrary{calc,math,through}
 %    \end{macrocode}
 
+
+
+
 % \subsection{\texttt{tikz}-Options for the new coordinate system}
 % Setup  options for tikzpicture environment
-%
-%
+% These options can be used like 
+% 
+% \begin{verbatim}
+% \begin{tikzpicture}[spradius=6,altitude projection=equidistance]
+% \coordinate (sunrise) at (...);
+% \end{tikzpicture}
+% \end{verbatim}
 %
 %    \begin{macrocode}
 \pgfkeys{/tikz/.cd,
+%    \end{macrocode}
+% \DescribeMacro{spradius} The radius of the 0° Altitude circle, default 5.5. This value can be accessed via macro \verb:\spradius:.
+%    \begin{macrocode}
   spradius/.store in=\spradius,
   spradius=5.5,
+%    \end{macrocode}
+% \DescribeMacro{altitude projection} 
+% How the altitude of the sun is "projected" on the sunpath diagram. 
+% Valid values are \texttt{spherical} and \texttt{equidistance}.
+% Its default value is \texttt{spherical}.
+% This value can be accessed via macro \verb:\sprojection:.
+%    \begin{macrocode}
   altitude projection/.store in = \spprojection,
   altitude projection=spherical
-}
 %    \end{macrocode}
-% These options can be used like 
-% 
-% \verb|\begin{tikzpicture}[spradius=6,altitude projection=equidistance]|
+%    \begin{macrocode}  
+} %
+%    \end{macrocode}
+%
 
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % \subsection{Define the new coordinate system \texttt{sunpath}}
-%
-% Define component \texttt{azi} and \texttt{alt} for the coordinate system \texttt{sunpath}.
-% They can be used like:
-%
-% \verb|\coordinate (A) at (sunpath cs:azi=110,alt=66);|
-%    \begin{macrocode}
 \makeatletter
+
+% \subsubsection{Azimuth and altitude}
+% Define component \texttt{azi} (=Azimuth angle) and \texttt{alt} (=Altidude angle) for the coordinate system \texttt{sunpath}.
+%    \begin{macrocode}
 \tikzset{
   cs/azi/.store in=\tikz@cs@azi,
   cs/alt/.store in=\tikz@cs@alt,
+}
+%    \end{macrocode}
+
+
+% \subsubsection{Projection functions}
+% Funtions to map the atitude of the sun to the altitude value on the sun path diagram.
+% 
+% \DescribeMacro{spherical} 
+% maps an azimuth angle $\theta$ to the altitude radius on the diagram with the function 
+%   \[s (\theta) = r \cos(\theta). \]
+%
+% \DescribeMacro{equidistance}
+% maps an altitude angle $\theta$ ti the altitude radius on the diagram with the function
+%    \[e (\theta) = r - r\cdot \frac{\theta}{90}. \]
+%
+% \DescribeMacro{altradius}
+% this function is used in the coordinate system \texttt{sunpath} to determinate the altitude 
+% radius of an azimuth angle on the sun path chart. 
+% It depends on the value of the option \verb:altitude projection:.
+% 
+%
+% \DescribeMacro{aziangle}
+% maps the azimuth angle $\alpha$ to the azimuth angle on the diagram with the function
+%     \[ a(\alpha) = 90 - \alpha. \]
+%    \begin{macrocode}
+\tikzset{  
   declare function = {
       spherical(\alt) = \spradius * cos(\alt);
       equidistance(\alt) = \spradius - \spradius*\alt/90;
@@ -128,7 +180,12 @@
       aziangle(\x) = 90 - \x;
   }
 } 
+%    \end{macrocode}
+%
 
+
+% \subsubsection{Coordinate system \texttt{sunpath}}
+%    \begin{macrocode}
 \tikzdeclarecoordinatesystem{sunpath}%
 {
     \tikzset{cs/.cd,azi=0,alt=0,#1}
@@ -140,9 +197,12 @@
         \pgfpointpolarxy{\angle}{\r}
     }
 }
-\makeatother 
 %    \end{macrocode}
-%
+\makeatother 
+
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % \subsection{Setup optical options for sunpath diagram}
 %    \begin{macrocode}
 \tikzset{
@@ -164,6 +224,12 @@
 %
 %
 % \subsection{Expose some commands for end-user}
+%    \begin{macrocode}
+\NewDocumentCommand\drawcrosshair{}{
+    \draw[sunpath grid] (-\spradius,0) -- (\spradius,0);
+    \draw[sunpath grid] (0,-\spradius) -- (0,\spradius);
+}
+%    \end{macrocode}
 %
 %    \begin{macrocode}
 \NewDocumentCommand\drawgeodirection{}{

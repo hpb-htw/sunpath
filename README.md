@@ -28,12 +28,10 @@ lualatex sunpath.ins
 
 then you can copy `sunpath.sty` to your local `texmf` tree, where latex can find it.
 
-* To create PDF Document manual you must use `lualatex`
+* To create PDF Document manual you must use `lualatex` via `l3build doc`:
 
 ```
-lualatex sunpath.dtx
-lualatex sunpath.usage.tex
-lualatex sunpath.lstlisting.tex
+l3build doc
 ```
 
 (`lualatex` because of my name, really ego right! It needs unicode to be typeset correctly.)

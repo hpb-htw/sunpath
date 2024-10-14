@@ -5,7 +5,12 @@ bundle = ""
 -- Typeset configuration
 typesetexe = "lualatex"
 typesetopts = "-interaction=nonstopmode --recorder"
-typesetfiles  = {"sunpath.dtx"}
+typesetsuppfiles = { 
+    "sunpath.docpart.tex" 
+}
+typesetfiles  = {
+    "sunpath.dtx"
+}
 typesetdemofiles = {
     "sunpath.usage.tex"
 }
