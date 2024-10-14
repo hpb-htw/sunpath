@@ -1,10 +1,42 @@
-\documentclass[DIV=11]{scrartcl}
+%\documentclass[DIV=11]{scrartcl}
+\documentclass{ltxdoc}
 
+\usepackage{fontspec}
 \usepackage{sunpath}
 
+\GetFileInfo{sunpath.sty}
+%
+\title{
+   \pkg{sunpath} -- Draw Sun Path
+   \thanks{This file describes \fileversion,
+     last revised \filedate.}\\[1ex]
+     \normalsize{Reference}
+}
+%
+\author{
+ Hồng-Phúc Bùi
+ \thanks{
+   E-mail:
+   \href{mailto:Hồng-Phúc Bùi}
+     {hong-phuc.bui (at) htwsaar dot de}
+  }
+}
+
+\date{Released \filedate}
+%
+% \parindent0pt
+%
+% \maketitle
+% \tableofcontents
 
 \begin{document}
-\begin{tikzpicture}[spradius=5.5]
+
+\maketitle
+\tableofcontents
+
+\section{Document}
+
+\begin{tikzpicture}
 \drawcrosshair;
 \drawaltitudecirle{{0,10,...,80,85}}
 \drawazimuthline{{0,10,...,360}}{85}{70}
