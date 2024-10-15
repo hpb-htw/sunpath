@@ -1,7 +1,7 @@
 # `sunpath` -- Draw Sun Path #
 
 
-(C) 2019 Hồng-Phúc Bùi
+(C) 2024 Hồng-Phúc Bùi
 
 
 
