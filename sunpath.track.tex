@@ -1,5 +1,5 @@
-\documentclass[DIV=11]{scrartcl}
-%\documentclass{ltxdoc}
+\documentclass{standalone}
+
 
 \usepackage{fontspec}
 \usepackage{sunpath}
@@ -7,70 +7,8 @@
 
 \usepackage{hyperref}
 
-%\GetFileInfo{sunpath.sty}
-%
-\title{
-%   \pkg{sunpath} -- Draw Sun Path
-%   \thanks{This file describes \fileversion,
-%     last revised \filedate.}\\[1ex]
-%     \normalsize{Reference}
-}
-%
-\author{
- Hồng-Phúc Bùi
- \thanks{
-   E-mail:
-   \href{mailto:Hồng-Phúc Bùi}
-     {hong-phuc.bui (at) htwsaar dot de}
-  }
-}
-
-%\date{Released \filedate}
-%
-% \parindent0pt
-%
-% \maketitle
-% \tableofcontents
 
 \begin{document}
-
-\maketitle
-\tableofcontents
-
-\section{Document}
-
-\begin{tikzpicture}
-\drawcrosshair;
-\drawaltitudecircle{{0,10,...,80,85}}
-\drawazimuthline{{0,10,...,360}}{85}{70}
-\drawazimuthline{{0,5,...,360}}{80}{0}
-
-\drawazimuthtick
-
-\drawgeodirection
-\drawaltitudelabel{{10,20,...,80,85}}
-\drawazimuthlabel{{0,15,...,350}}
-
-\path[fill=red,draw=red] (sunpath cs:azi=150,alt=35) circle[radius=1pt];
-
-\draw[] (sunpath cs:alt=66,azi=105) -- (sunpath cs:alt=66,azi=250);
-
-\end{tikzpicture}
-
-
-\begin{tikzpicture}[spradius=6,altitude projection=equidistance]
-\drawaltitudecircle{{0,10,...,80}}
-
-\drawazimuthline{{0,10,...,360}}{80}{0}
-
-\drawazimuthtick
-
-\drawgeodirection
-\drawaltitudelabel{{10,20,...,80}}
-\drawazimuthlabel{{0,15,...,350}}
-\end{tikzpicture}
-
-
 \begin{tikzpicture}[spradius=6]
 \tikzset{
   sun path curve/.style={draw=red!20,thick},
@@ -113,7 +51,5 @@
 \drawazimuthlabel{{0,15,...,350}}
 \drawgeodirection
 \end{tikzpicture}
-
-
 \end{document}
 

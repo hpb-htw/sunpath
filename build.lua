@@ -2,6 +2,14 @@
 module = "sunpath"
 bundle = ""
 
+sourcefiles = {
+    "sunpath.dtx",
+    "sunpath.ins",
+    "sunpath.tex",    
+    "support/*.tex",
+    "support/*.pdf"
+}
+
 -- Typeset configuration
 typesetexe = "lualatex"
 typesetopts = "-interaction=nonstopmode --recorder"
@@ -25,11 +33,10 @@ typesetdemofiles = {
 
 -- Copy all files match pattern to build/doc
 -- therefore use \input{java-program} instead of \input{demo-code/java-program.tex}
---[[
 docfiles = {
-    "demo-code/*"
+    "sunpath.docpart.tex"
 }
-]]--
+
 
 uploadconfig = {
     pkg          = "sunpath",
@@ -48,7 +55,6 @@ uploadconfig = {
     development  = "https://github.com/hpb-htw/sunpath/issues",
     support      = "https://github.com/hpb-htw/sunpath/issues",
     note         = [[Uploaded automatically by l3build]],
-  }
+}
   
   
--- Remove the update after the first upload done  
