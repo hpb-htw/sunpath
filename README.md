@@ -8,7 +8,7 @@
 
 This package provides tool to draw a sunpath chart like this:
 
-
+![sunpath chart](https://raw.githubusercontent.com/hpb-htw/sunpath/refs/heads/master/sunpath.track.svg)
 
 ## Licence ##
 
