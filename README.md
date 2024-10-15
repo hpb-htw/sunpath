@@ -4,7 +4,7 @@
 (C) 2024 Hồng-Phúc Bùi
 
 
-## Description
+## Description ##
 
 This package provides tool to draw a sunpath chart like this:
 

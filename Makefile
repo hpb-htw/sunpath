@@ -24,8 +24,12 @@ clean:
 	rm -fv $(PACKAGE).*.pdf
 	rm -fv $(PACKAGE).sty
 	rm -fv support/*.{log,aux,out}
-	rm -f *.svg
+	make clean-svg
 	#rm -fv $(FILECONTENTS)
+
+.PHONY: clean-support
+clean-support:
+	make -C support clean
 
 .PHONY: debug
 debug:
@@ -47,12 +51,17 @@ dryinstall:
 install:
 	make clean
 	l3build install
-	
-$(pdf_svg): %.pdf: %.tex
-	$(LATEX) $^
-	$(LATEX) $^
-	$(LATEX) $^
 
+.PHONY: upload
+upload:
+	make clean doc ctan
+	l3build upload
+
+# SVG part
+# SVG is just a nice to have adon
+
+$(pdf_svg): %.pdf: %.tex
+	ls3build doc
 
 .PHONY: svg
 svg: $(svgs)
@@ -61,8 +70,10 @@ svg: $(svgs)
 $(svgs): %.svg: %.pdf
 	inkscape --export-filename=$@ $^
 
+.PHONY: clean-svg
+clean-svg:
+	rm -f *.svg
 
-.PHONY: upload
-upload:
-	make clean doc ctan
-	l3build upload	
+
+
+
