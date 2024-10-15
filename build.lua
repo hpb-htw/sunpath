@@ -16,11 +16,11 @@ typesetfiles  = {
 }
 typesetdemofiles = {
     "sunpath.tex",    -- main document file
-    --"sunpath.demo.tex",
+    "sunpath.demo.tex",
     -- these files are for testing this package in difference classes!
-    --"sunpath.l3doc.tex",  -- this will not work   
-    --"sunpath.article.tex",
-    --"sunpath.scrartcle.tex"
+    --"sunpath.l3doc.tex",    -- this will not work   
+    "sunpath.article.tex",    -- test with article class
+    "sunpath.scrartcl.tex"   -- test with scrartcl class
 }
 
 -- Copy all files match pattern to build/doc

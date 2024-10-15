@@ -1,0 +1,39 @@
+\documentclass{article}
+
+\usepackage{fontspec}
+\usepackage{luaotfload}
+\usepackage{tikz}
+\usepackage{graphicx}
+\usepackage{float}
+
+\usepackage{sunpath}
+
+\usetikzlibrary{hobby} % this library let one connect points to curve.
+
+\newcommand{\TikZ}{Ti\textit{k}Z}
+
+\title{
+  \textsf{sunpath} -- Draw Sun Path\\
+  (Test Compatibility only)
+}%
+%
+\author{%
+ Hồng-Phúc Bùi% 
+}
+
+
+
+\begin{document}
+%
+\parindent0pt
+%
+\maketitle
+\tableofcontents
+
+\section{Object}
+
+This file tests if this package can be used within a \texttt{article} class.
+
+\input{sunpath.docpart.tex}
+
+\end{document}

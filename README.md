@@ -34,6 +34,12 @@ then you can copy `sunpath.sty` to your local `texmf` tree, where latex can find
 l3build doc
 ```
 
+You also need the TikZ-library hobby to create the curve.
+
+```
+\usetikzlibrary{hobby}
+```
+
 (`lualatex` because of my name, really ego right! It needs unicode to be typeset correctly.)
 
 ## Development ##

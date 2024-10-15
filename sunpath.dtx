@@ -175,7 +175,7 @@
 %
 %    \begin{macrocode}
 \NewDocumentCommand\drawgeodirection{}{
-  \foreach \dname / \dgrad \ in {N/0, E/90, S/180, W/270}{
+  \foreach \dname / \dgrad in {N/0, E/90, S/180, W/270}{
       \tikzmath{
         \polarangle = aziangle(\dgrad);
       }
@@ -197,9 +197,9 @@
 %
 %
 %    \begin{macrocode}
-\NewDocumentCommand\drawaltitudelabel{m}{
-  \foreach \altitude in #1 {
-      \coordinate (A) at (sunpath cs:azi=0,alt=\altitude) ;      
+\NewDocumentCommand\drawaltitudelabel{O{135}m}{
+  \foreach \altitude in #2 {
+      \coordinate (A) at (sunpath cs:azi=#1,alt=\altitude) ;      
       \node [anchor=east,altitude label] at (A) {\altitude};  
     }
 }
