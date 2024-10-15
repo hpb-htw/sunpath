@@ -48,7 +48,6 @@ uploadconfig = {
     development  = "https://github.com/hpb-htw/sunpath/issues",
     support      = "https://github.com/hpb-htw/sunpath/issues",
     note         = [[Uploaded automatically by l3build]],
-    update       = "false"
   }
   
   
