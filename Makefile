@@ -4,6 +4,11 @@ ENV_VAR := export max_print_line=1000;
 # FILECONTENTS = anatomy-of* using-a-* java-* recursive-with-bug*
 PACKAGE := sunpath
 
+# SVG tagrgets
+pdf_svg = sunpath.spherical.pdf sunpath.equidistance.pdf sunpath.track.pdf
+svgs = sunpath.spherical.svg sunpath.equidistance.svg sunpath.track.svg
+
+
 .PHONY: doc
 doc:
 	$(ENV_VAR) l3build doc
@@ -19,6 +24,7 @@ clean:
 	rm -fv $(PACKAGE).*.pdf
 	rm -fv $(PACKAGE).sty
 	rm -fv support/*.{log,aux,out}
+	rm -f *.svg
 	#rm -fv $(FILECONTENTS)
 
 .PHONY: debug
@@ -42,6 +48,19 @@ install:
 	make clean
 	l3build install
 	
+$(pdf_svg): %.pdf: %.tex
+	$(LATEX) $^
+	$(LATEX) $^
+	$(LATEX) $^
+
+
+.PHONY: svg
+svg: $(svgs)
+
+
+$(svgs): %.svg: %.pdf
+	inkscape --export-filename=$@ $^
+
 
 .PHONY: upload
 upload:
