@@ -6,13 +6,21 @@ bundle = ""
 typesetexe = "lualatex"
 typesetopts = "-interaction=nonstopmode --recorder"
 typesetsuppfiles = { 
-    "sunpath.docpart.tex" 
+    "sunpath.docpart.tex",
+    "horizontal-coordinate.pdf",
+    "horizontal-coordinate.tex"
 }
 typesetfiles  = {
-    "sunpath.dtx"
+    -- keep this option empty. Documents are written in sunpath.tex.
+    -- See below
 }
 typesetdemofiles = {
-    "sunpath.usage.tex"
+    "sunpath.tex",    -- main document file
+    --"sunpath.demo.tex",
+    -- these files are for testing this package in difference classes!
+    --"sunpath.l3doc.tex",  -- this will not work   
+    --"sunpath.article.tex",
+    --"sunpath.scrartcle.tex"
 }
 
 -- Copy all files match pattern to build/doc

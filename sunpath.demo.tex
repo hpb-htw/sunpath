@@ -1,16 +1,18 @@
-%\documentclass[DIV=11]{scrartcl}
-\documentclass{ltxdoc}
+\documentclass[DIV=11]{scrartcl}
+%\documentclass{ltxdoc}
 
 \usepackage{fontspec}
 \usepackage{sunpath}
 
-\GetFileInfo{sunpath.sty}
+\usepackage{hyperref}
+
+%\GetFileInfo{sunpath.sty}
 %
 \title{
-   \pkg{sunpath} -- Draw Sun Path
-   \thanks{This file describes \fileversion,
-     last revised \filedate.}\\[1ex]
-     \normalsize{Reference}
+%   \pkg{sunpath} -- Draw Sun Path
+%   \thanks{This file describes \fileversion,
+%     last revised \filedate.}\\[1ex]
+%     \normalsize{Reference}
 }
 %
 \author{
@@ -22,7 +24,7 @@
   }
 }
 
-\date{Released \filedate}
+%\date{Released \filedate}
 %
 % \parindent0pt
 %
@@ -38,7 +40,7 @@
 
 \begin{tikzpicture}
 \drawcrosshair;
-\drawaltitudecirle{{0,10,...,80,85}}
+\drawaltitudecircle{{0,10,...,80,85}}
 \drawazimuthline{{0,10,...,360}}{85}{70}
 \drawazimuthline{{0,5,...,360}}{80}{0}
 
@@ -47,11 +49,14 @@
 \drawgeodirection
 \drawaltitudelabel{{10,20,...,80,85}}
 \drawazimuthlabel{{0,15,...,350}} ;  
+
+\draw[] (sunpath cs:alt=66,azi=105) -- (sunpath cs:alt=66,azi=250);
+
 \end{tikzpicture}
 
 
 \begin{tikzpicture}[spradius=6,altitude projection=equidistance]
-\drawaltitudecirle{{0,10,...,80}}
+\drawaltitudecircle{{0,10,...,80}}
 
 \drawazimuthline{{0,10,...,360}}{80}{0}
 

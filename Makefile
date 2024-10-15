@@ -18,6 +18,7 @@ clean:
 	rm -fv $(PACKAGE) $(PACKAGE)-ctan.curlopt
 	rm -fv $(PACKAGE).*.pdf
 	rm -fv $(PACKAGE).sty
+	rm -fv support/*.{log,aux,out}
 	#rm -fv $(FILECONTENTS)
 
 .PHONY: debug

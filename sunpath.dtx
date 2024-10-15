@@ -25,69 +25,13 @@
 %<package>\NeedsTeXFormat{LaTeX2e}[2018/12/01]
 %<package>\ProvidesPackage{sunpath}[2024/10/10 v0.1-Alpha Draw Sun Path]
 % \fi
-%
-% \iffalse
-%<*driver>
-\documentclass[full]{l3doc}
 
-\usepackage{fontspec}
-\usepackage{luaotfload}
-\usepackage{tikz}
-
-\usepackage{sunpath}
-\EnableCrossrefs
-\CodelineIndex
-\RecordChanges
-
-\begin{document}
-%        sunpath.docpart.tex  
-  \DocInput{\jobname.dtx}
-  % ^^A%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  \PrintChanges
-  \PrintIndex
-\end{document}
-%</driver>
-% \fi
-%
-%
-% \GetFileInfo{\jobname.sty}
-%
-% \title{^^A
-%   \pkg{sunpath} -- Draw Sun Path^^A
-%   \thanks{This file describes \fileversion, ^^A
-%     last revised \filedate.}\\[1ex]^^A
-%     \normalsize{Reference}^^A
-% }^^A
-%
-% \author{^^A
-%  Hồng-Phúc Bùi^^A
-%  \thanks{^^A
-%    E-mail:
-%    \href{mailto:Hồng-Phúc Bùi}
-%      {hong-phuc.bui (at) htwsaar dot de}^^A
-%   }^^A
-% }
-%
-% \date{Released \filedate}
-%
-% \parindent0pt
-%
-% \maketitle
-% \tableofcontents
-% 
-% \section{Hints}
-% More details about usage of this Package can be found in \texttt{sunpath.usage.tex}.
-% This document show only generated reference of commands in this Package.
-%
-% \input{sunpath.docpart.tex}
-%
-% ^^A %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% \section{Implementation}
-%
 % \changes{v0.1-Alpha}
 %         {2024/10/10}
 %         {Initial implementation}
-%
+
+
+% \section{Implementation}
 %
 % \subsection{Package Dependenies}
 %
@@ -105,34 +49,32 @@
 
 
 % \subsection{\texttt{tikz}-Options for the new coordinate system}
-% Setup  options for tikzpicture environment
+% Setup  options for tikzpicture environment.
+% \DescribeMacro{spradius} The radius of the 0° Altitude circle, default 5.5. 
+% This value can be accessed via macro \verb:\spradius:.
+%
+% \DescribeMacro{altitude projection} 
+% How the altitude of the sun is "projected" on the sunpath diagram. 
+% Valid values are \texttt{spherical} and \texttt{equidistance}.
+% Its default value is \texttt{spherical}.
+%
+% This value can be accessed via macro \verb:\sprojection:.
+
 % These options can be used like 
 % 
 % \begin{verbatim}
 % \begin{tikzpicture}[spradius=6,altitude projection=equidistance]
-% \coordinate (sunrise) at (...);
+% \coordinate (sunrise) at (sunpath cs:azi=105, alt=66.6);
 % \end{tikzpicture}
 % \end{verbatim}
 %
 %    \begin{macrocode}
 \pgfkeys{/tikz/.cd,
-%    \end{macrocode}
-% \DescribeMacro{spradius} The radius of the 0° Altitude circle, default 5.5. This value can be accessed via macro \verb:\spradius:.
-%    \begin{macrocode}
   spradius/.store in=\spradius,
   spradius=5.5,
-%    \end{macrocode}
-% \DescribeMacro{altitude projection} 
-% How the altitude of the sun is "projected" on the sunpath diagram. 
-% Valid values are \texttt{spherical} and \texttt{equidistance}.
-% Its default value is \texttt{spherical}.
-% This value can be accessed via macro \verb:\sprojection:.
-%    \begin{macrocode}
   altitude projection/.store in = \spprojection,
   altitude projection=spherical
-%    \end{macrocode}
-%    \begin{macrocode}  
-} %
+}
 %    \end{macrocode}
 %
 
@@ -155,11 +97,11 @@
 % Funtions to map the atitude of the sun to the altitude value on the sun path diagram.
 % 
 % \DescribeMacro{spherical} 
-% maps an azimuth angle $\theta$ to the altitude radius on the diagram with the function 
+% maps an altitude angle $\theta$ to the altitude radius on the diagram with the function 
 %   \[s (\theta) = r \cos(\theta). \]
 %
 % \DescribeMacro{equidistance}
-% maps an altitude angle $\theta$ ti the altitude radius on the diagram with the function
+% maps an altitude angle $\theta$ to the altitude radius on the diagram with the function
 %    \[e (\theta) = r - r\cdot \frac{\theta}{90}. \]
 %
 % \DescribeMacro{altradius}
@@ -169,8 +111,8 @@
 % 
 %
 % \DescribeMacro{aziangle}
-% maps the azimuth angle $\alpha$ to the azimuth angle on the diagram with the function
-%     \[ a(\alpha) = 90 - \alpha. \]
+% maps the azimuth angle $\Phi$ to the azimuth angle on the diagram with the function
+%     \[ a(\Phi) = 90 - \Phi. \]
 %    \begin{macrocode}
 \tikzset{  
   declare function = {
@@ -245,7 +187,7 @@
 %
 %
 %    \begin{macrocode}
-\NewDocumentCommand\drawaltitudecirle{m}{
+\NewDocumentCommand\drawaltitudecircle{m}{
   \foreach \altitude in #1 {
     \coordinate (A) at (sunpath cs:azi=0,alt=\altitude) ;  
     \path[draw,sunpath grid] (0,0) circle[radius=altradius(\altitude)];
