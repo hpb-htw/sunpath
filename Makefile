@@ -61,7 +61,7 @@ upload:
 # SVG is just a nice to have adon
 
 $(pdf_svg): %.pdf: %.tex
-	ls3build doc
+	l3build doc
 
 .PHONY: svg
 svg: $(svgs)
