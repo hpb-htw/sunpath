@@ -2761,11 +2761,10 @@
        id="text544"
        xml:space="preserve"
        transform="matrix(1.3333333,0,0,1.3333333,327.55733,428.092)"><tspan
+         id="tspan544"
          style="font-variant:normal;font-weight:normal;font-size:9.96264px;font-family:'Latin Modern Roman';writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:none"
-         x="0 4.9813199 9.9626398 12.732254 17.713573"
-         y="0"
-         sodipodi:role="line"
-         id="tspan544">12:00</tspan></text>
+         x="0"
+         y="0">12:00</tspan></text>
     <path
        id="path545"
        d="m 94.74805,-110.18236 h 11.95532 v 6.55946 H 94.74805 Z"
@@ -2775,11 +2774,10 @@
        id="text545"
        xml:space="preserve"
        transform="matrix(1.3333333,0,0,1.3333333,407.428,420.20933)"><tspan
+         id="tspan545"
          style="font-variant:normal;font-weight:normal;font-size:7.97011px;font-family:'Latin Modern Sans';writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
-         x="0 4.2321286"
-         y="0"
-         sodipodi:role="line"
-         id="tspan545">10</tspan></text>
+         x="0"
+         y="0">10</tspan></text>
     <path
        id="path546"
        d="m 81.38521,-96.81952 h 11.95532 v 6.55946 H 81.38521 Z"
@@ -2789,11 +2787,10 @@
        id="text546"
        xml:space="preserve"
        transform="matrix(1.3333333,0,0,1.3333333,389.61067,402.392)"><tspan
+         id="tspan546"
          style="font-variant:normal;font-weight:normal;font-size:7.97011px;font-family:'Latin Modern Sans';writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
-         x="0 4.2321286"
-         y="0"
-         sodipodi:role="line"
-         id="tspan546">20</tspan></text>
+         x="0"
+         y="0">20</tspan></text>
     <path
        id="path547"
        d="M 68.02238,-83.4567 H 79.9777 v 6.55946 H 68.02238 Z"
@@ -2803,11 +2800,10 @@
        id="text547"
        xml:space="preserve"
        transform="matrix(1.3333333,0,0,1.3333333,371.79333,384.57467)"><tspan
+         id="tspan547"
          style="font-variant:normal;font-weight:normal;font-size:7.97011px;font-family:'Latin Modern Sans';writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
-         x="0 4.2321286"
-         y="0"
-         sodipodi:role="line"
-         id="tspan547">30</tspan></text>
+         x="0"
+         y="0">30</tspan></text>
     <path
        id="path548"
        d="m 54.65956,-70.09387 h 11.95532 v 6.55946 H 54.65956 Z"
@@ -2817,11 +2813,10 @@
        id="text548"
        xml:space="preserve"
        transform="matrix(1.3333333,0,0,1.3333333,353.97733,366.75867)"><tspan
+         id="tspan548"
          style="font-variant:normal;font-weight:normal;font-size:7.97011px;font-family:'Latin Modern Sans';writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
-         x="0 4.2321286"
-         y="0"
-         sodipodi:role="line"
-         id="tspan548">40</tspan></text>
+         x="0"
+         y="0">40</tspan></text>
     <path
        id="path549"
        d="m 41.29672,-56.73103 h 11.95532 v 6.55946 H 41.29672 Z"
@@ -2831,11 +2826,10 @@
        id="text549"
        xml:space="preserve"
        transform="matrix(1.3333333,0,0,1.3333333,336.16,348.94133)"><tspan
+         id="tspan549"
          style="font-variant:normal;font-weight:normal;font-size:7.97011px;font-family:'Latin Modern Sans';writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
-         x="0 4.2321286"
-         y="0"
-         sodipodi:role="line"
-         id="tspan549">50</tspan></text>
+         x="0"
+         y="0">50</tspan></text>
     <path
        id="path550"
        d="m 27.9339,-43.36821 h 11.95532 v 6.55946 H 27.9339 Z"
@@ -2845,11 +2839,10 @@
        id="text550"
        xml:space="preserve"
        transform="matrix(1.3333333,0,0,1.3333333,318.34267,331.124)"><tspan
+         id="tspan550"
          style="font-variant:normal;font-weight:normal;font-size:7.97011px;font-family:'Latin Modern Sans';writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
-         x="0 4.2321286"
-         y="0"
-         sodipodi:role="line"
-         id="tspan550">60</tspan></text>
+         x="0"
+         y="0">60</tspan></text>
     <path
        id="path551"
        d="M 14.57108,-30.00539 H 26.5264 v 6.55946 H 14.57108 Z"
@@ -2859,11 +2852,10 @@
        id="text551"
        xml:space="preserve"
        transform="matrix(1.3333333,0,0,1.3333333,300.52667,313.308)"><tspan
+         id="tspan551"
          style="font-variant:normal;font-weight:normal;font-size:7.97011px;font-family:'Latin Modern Sans';writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
-         x="0 4.2321286"
-         y="0"
-         sodipodi:role="line"
-         id="tspan551">70</tspan></text>
+         x="0"
+         y="0">70</tspan></text>
     <path
        id="path552"
        d="m 1.20825,-16.64256 h 11.95532 v 6.55946 H 1.20825 Z"
@@ -2873,11 +2865,10 @@
        id="text552"
        xml:space="preserve"
        transform="matrix(1.3333333,0,0,1.3333333,282.70933,295.49067)"><tspan
+         id="tspan552"
          style="font-variant:normal;font-weight:normal;font-size:7.97011px;font-family:'Latin Modern Sans';writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
-         x="0 4.2321286"
-         y="0"
-         sodipodi:role="line"
-         id="tspan552">80</tspan></text>
+         x="0"
+         y="0">80</tspan></text>
     <path
        id="path553"
        d="M -5.47316,-9.96114 H 6.48216 v 6.55946 H -5.47316 Z"
@@ -2887,257 +2878,233 @@
        id="text553"
        xml:space="preserve"
        transform="matrix(1.3333333,0,0,1.3333333,273.80133,286.58267)"><tspan
+         id="tspan553"
          style="font-variant:normal;font-weight:normal;font-size:7.97011px;font-family:'Latin Modern Sans';writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
-         x="0 4.2321286"
-         y="0"
-         sodipodi:role="line"
-         id="tspan553">85</tspan></text>
+         x="0"
+         y="0">85</tspan></text>
     <text
        id="text554"
        xml:space="preserve"
        transform="matrix(1.3333333,0,0,1.3333333,275.94933,33.633333)"><tspan
+         id="tspan554"
          style="font-variant:normal;font-weight:normal;font-size:7.97011px;font-family:'Latin Modern Sans';writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
          x="0"
-         y="0"
-         id="tspan554">0</tspan></text>
+         y="0">0</tspan></text>
     <text
        id="text555"
        xml:space="preserve"
        transform="matrix(1.3333333,0,0,1.3333333,336.29067,41.949333)"><tspan
+         id="tspan555"
          style="font-variant:normal;font-weight:normal;font-size:7.97011px;font-family:'Latin Modern Sans';writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
-         x="0 4.2321286"
-         y="0"
-         sodipodi:role="line"
-         id="tspan555">15</tspan></text>
+         x="0"
+         y="0">15</tspan></text>
     <text
        id="text556"
        xml:space="preserve"
        transform="matrix(1.3333333,0,0,1.3333333,395.148,66.328)"><tspan
+         id="tspan556"
          style="font-variant:normal;font-weight:normal;font-size:7.97011px;font-family:'Latin Modern Sans';writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
-         x="0 4.2321286"
-         y="0"
-         sodipodi:role="line"
-         id="tspan556">30</tspan></text>
+         x="0"
+         y="0">30</tspan></text>
     <text
        id="text557"
        xml:space="preserve"
        transform="matrix(1.3333333,0,0,1.3333333,445.69067,105)"><tspan
+         id="tspan557"
          style="font-variant:normal;font-weight:normal;font-size:7.97011px;font-family:'Latin Modern Sans';writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
-         x="0 4.2321286"
-         y="0"
-         sodipodi:role="line"
-         id="tspan557">45</tspan></text>
+         x="0"
+         y="0">45</tspan></text>
     <text
        id="text558"
        xml:space="preserve"
        transform="matrix(1.3333333,0,0,1.3333333,484.47333,155.65333)"><tspan
+         id="tspan558"
          style="font-variant:normal;font-weight:normal;font-size:7.97011px;font-family:'Latin Modern Sans';writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
-         x="0 4.2321286"
-         y="0"
-         sodipodi:role="line"
-         id="tspan558">60</tspan></text>
+         x="0"
+         y="0">60</tspan></text>
     <text
        id="text559"
        xml:space="preserve"
        transform="matrix(1.3333333,0,0,1.3333333,508.85333,214.4)"><tspan
+         id="tspan559"
          style="font-variant:normal;font-weight:normal;font-size:7.97011px;font-family:'Latin Modern Sans';writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
-         x="0 4.2321286"
-         y="0"
-         sodipodi:role="line"
-         id="tspan559">75</tspan></text>
+         x="0"
+         y="0">75</tspan></text>
     <text
        id="text560"
        xml:space="preserve"
        transform="matrix(1.3333333,0,0,1.3333333,517.168,277.67467)"><tspan
+         id="tspan560"
          style="font-variant:normal;font-weight:normal;font-size:7.97011px;font-family:'Latin Modern Sans';writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
-         x="0 4.2321286"
-         y="0"
-         sodipodi:role="line"
-         id="tspan560">90</tspan></text>
+         x="0"
+         y="0">90</tspan></text>
     <text
        id="text561"
        xml:space="preserve"
        transform="matrix(1.3333333,0,0,1.3333333,506.032,340.836)"><tspan
+         id="tspan561"
          style="font-variant:normal;font-weight:normal;font-size:7.97011px;font-family:'Latin Modern Sans';writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
-         x="0 4.2321286 8.4642572"
-         y="0"
-         sodipodi:role="line"
-         id="tspan561">105</tspan></text>
+         x="0"
+         y="0">105</tspan></text>
     <text
        id="text562"
        xml:space="preserve"
        transform="matrix(1.3333333,0,0,1.3333333,481.652,399.69467)"><tspan
+         id="tspan562"
          style="font-variant:normal;font-weight:normal;font-size:7.97011px;font-family:'Latin Modern Sans';writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
-         x="0 4.2321286 8.4642572"
-         y="0"
-         sodipodi:role="line"
-         id="tspan562">120</tspan></text>
+         x="0"
+         y="0">120</tspan></text>
     <text
        id="text563"
        xml:space="preserve"
        transform="matrix(1.3333333,0,0,1.3333333,442.86933,450.23733)"><tspan
+         id="tspan563"
          style="font-variant:normal;font-weight:normal;font-size:7.97011px;font-family:'Latin Modern Sans';writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
-         x="0 4.2321286 8.4642572"
-         y="0"
-         sodipodi:role="line"
-         id="tspan563">135</tspan></text>
+         x="0"
+         y="0">135</tspan></text>
     <text
        id="text564"
        xml:space="preserve"
        transform="matrix(1.3333333,0,0,1.3333333,392.32667,489.02)"><tspan
+         id="tspan564"
          style="font-variant:normal;font-weight:normal;font-size:7.97011px;font-family:'Latin Modern Sans';writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
-         x="0 4.2321286 8.4642572"
-         y="0"
-         sodipodi:role="line"
-         id="tspan564">150</tspan></text>
+         x="0"
+         y="0">150</tspan></text>
     <text
        id="text565"
        xml:space="preserve"
        transform="matrix(1.3333333,0,0,1.3333333,333.46933,513.39867)"><tspan
+         id="tspan565"
          style="font-variant:normal;font-weight:normal;font-size:7.97011px;font-family:'Latin Modern Sans';writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
-         x="0 4.2321286 8.4642572"
-         y="0"
-         sodipodi:role="line"
-         id="tspan565">165</tspan></text>
+         x="0"
+         y="0">165</tspan></text>
     <text
        id="text566"
        xml:space="preserve"
        transform="matrix(1.3333333,0,0,1.3333333,270.30667,521.71467)"><tspan
+         id="tspan566"
          style="font-variant:normal;font-weight:normal;font-size:7.97011px;font-family:'Latin Modern Sans';writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
-         x="0 4.2321286 8.4642572"
-         y="0"
-         sodipodi:role="line"
-         id="tspan566">180</tspan></text>
+         x="0"
+         y="0">180</tspan></text>
     <text
        id="text567"
        xml:space="preserve"
        transform="matrix(1.3333333,0,0,1.3333333,207.144,513.39867)"><tspan
+         id="tspan567"
          style="font-variant:normal;font-weight:normal;font-size:7.97011px;font-family:'Latin Modern Sans';writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
-         x="0 4.2321286 8.4642572"
-         y="0"
-         sodipodi:role="line"
-         id="tspan567">195</tspan></text>
+         x="0"
+         y="0">195</tspan></text>
     <text
        id="text568"
        xml:space="preserve"
        transform="matrix(1.3333333,0,0,1.3333333,148.28667,489.02)"><tspan
+         id="tspan568"
          style="font-variant:normal;font-weight:normal;font-size:7.97011px;font-family:'Latin Modern Sans';writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
-         x="0 4.2321286 8.4642572"
-         y="0"
-         sodipodi:role="line"
-         id="tspan568">210</tspan></text>
+         x="0"
+         y="0">210</tspan></text>
     <text
        id="text569"
        xml:space="preserve"
        transform="matrix(1.3333333,0,0,1.3333333,97.744,450.23733)"><tspan
+         id="tspan569"
          style="font-variant:normal;font-weight:normal;font-size:7.97011px;font-family:'Latin Modern Sans';writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
-         x="0 4.2321286 8.4642572"
-         y="0"
-         sodipodi:role="line"
-         id="tspan569">225</tspan></text>
+         x="0"
+         y="0">225</tspan></text>
     <text
        id="text570"
        xml:space="preserve"
        transform="matrix(1.3333333,0,0,1.3333333,58.961333,399.69467)"><tspan
+         id="tspan570"
          style="font-variant:normal;font-weight:normal;font-size:7.97011px;font-family:'Latin Modern Sans';writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
-         x="0 4.2321286 8.4642572"
-         y="0"
-         sodipodi:role="line"
-         id="tspan570">240</tspan></text>
+         x="0"
+         y="0">240</tspan></text>
     <text
        id="text571"
        xml:space="preserve"
        transform="matrix(1.3333333,0,0,1.3333333,34.581333,340.836)"><tspan
+         id="tspan571"
          style="font-variant:normal;font-weight:normal;font-size:7.97011px;font-family:'Latin Modern Sans';writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
-         x="0 4.2321286 8.4642572"
-         y="0"
-         sodipodi:role="line"
-         id="tspan571">255</tspan></text>
+         x="0"
+         y="0">255</tspan></text>
     <text
        id="text572"
        xml:space="preserve"
        transform="matrix(1.3333333,0,0,1.3333333,26.266667,277.67467)"><tspan
+         id="tspan572"
          style="font-variant:normal;font-weight:normal;font-size:7.97011px;font-family:'Latin Modern Sans';writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
-         x="0 4.2321286 8.4642572"
-         y="0"
-         sodipodi:role="line"
-         id="tspan572">270</tspan></text>
+         x="0"
+         y="0">270</tspan></text>
     <text
        id="text573"
        xml:space="preserve"
        transform="matrix(1.3333333,0,0,1.3333333,34.581333,214.512)"><tspan
+         id="tspan573"
          style="font-variant:normal;font-weight:normal;font-size:7.97011px;font-family:'Latin Modern Sans';writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
-         x="0 4.2321286 8.4642572"
-         y="0"
-         sodipodi:role="line"
-         id="tspan573">285</tspan></text>
+         x="0"
+         y="0">285</tspan></text>
     <text
        id="text574"
        xml:space="preserve"
        transform="matrix(1.3333333,0,0,1.3333333,58.961333,155.65333)"><tspan
+         id="tspan574"
          style="font-variant:normal;font-weight:normal;font-size:7.97011px;font-family:'Latin Modern Sans';writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
-         x="0 4.2321286 8.4642572"
-         y="0"
-         sodipodi:role="line"
-         id="tspan574">300</tspan></text>
+         x="0"
+         y="0">300</tspan></text>
     <text
        id="text575"
        xml:space="preserve"
        transform="matrix(1.3333333,0,0,1.3333333,97.744,105.112)"><tspan
+         id="tspan575"
          style="font-variant:normal;font-weight:normal;font-size:7.97011px;font-family:'Latin Modern Sans';writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
-         x="0 4.2321286 8.4642572"
-         y="0"
-         sodipodi:role="line"
-         id="tspan575">315</tspan></text>
+         x="0"
+         y="0">315</tspan></text>
     <text
        id="text576"
        xml:space="preserve"
        transform="matrix(1.3333333,0,0,1.3333333,148.28667,66.328)"><tspan
+         id="tspan576"
          style="font-variant:normal;font-weight:normal;font-size:7.97011px;font-family:'Latin Modern Sans';writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
-         x="0 4.2321286 8.4642572"
-         y="0"
-         sodipodi:role="line"
-         id="tspan576">330</tspan></text>
+         x="0"
+         y="0">330</tspan></text>
     <text
        id="text577"
        xml:space="preserve"
        transform="matrix(1.3333333,0,0,1.3333333,207.144,41.949333)"><tspan
+         id="tspan577"
          style="font-variant:normal;font-weight:normal;font-size:7.97011px;font-family:'Latin Modern Sans';writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
-         x="0 4.2321286 8.4642572"
-         y="0"
-         sodipodi:role="line"
-         id="tspan577">345</tspan></text>
+         x="0"
+         y="0">345</tspan></text>
     <text
        id="text578"
        xml:space="preserve"
        transform="matrix(1.3333333,0,0,1.3333333,273.78933,13.5)"><tspan
+         id="tspan578"
          style="font-variant:normal;font-weight:normal;font-size:9.96264px;font-family:'Latin Modern Roman';writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
          x="0"
-         y="0"
-         id="tspan578">N</tspan></text>
+         y="0">N</tspan></text>
     <text
        id="text579"
        xml:space="preserve"
        transform="matrix(1.3333333,0,0,1.3333333,539.46,278.70533)"><tspan
+         id="tspan579"
          style="font-variant:normal;font-weight:normal;font-size:9.96264px;font-family:'Latin Modern Roman';writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
          x="0"
-         y="0"
-         id="tspan579">E</tspan></text>
+         y="0">E</tspan></text>
     <text
        id="text580"
        xml:space="preserve"
        transform="matrix(1.3333333,0,0,1.3333333,275.07867,544.24133)"><tspan
+         id="tspan580"
          style="font-variant:normal;font-weight:normal;font-size:9.96264px;font-family:'Latin Modern Roman';writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
          x="0"
-         y="0"
-         id="tspan580">S</tspan></text>
+         y="0">S</tspan></text>
     <text
        id="text581"
        xml:space="preserve"
        transform="matrix(1.3333333,0,0,1.3333333,4.428,278.57867)"><tspan
+         id="tspan581"
          style="font-variant:normal;font-weight:normal;font-size:9.96264px;font-family:'Latin Modern Roman';writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
          x="0"
-         y="0"
-         id="tspan581">W</tspan></text>
+         y="0">W</tspan></text>
   </g>
 </svg>

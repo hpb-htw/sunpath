@@ -1,3 +1,68 @@
+local VERSION_CHECK_PATTERN = "<package>\\ProvidesPackage{"
+
+local OK = 0
+local FILE_NOT_FOUND = 99
+local PATTERN_NOT_FOUND = 10
+
+
+-- check if the file exists
+function file_exists(file)
+  local f = io.open(file, "rb")
+  if f then f:close() end
+  return f ~= nil
+end
+
+-- parse the version parts of the line  "%<package>\ProvidesPackage{sunpath}[2024/10/16 v0.2-Alpha Draw Sun Path]"
+function parse_version_from_dtx_line(line)
+    local sep = "([^%s]+)"
+    local t = {}
+    for str in string.gmatch(line, sep) do
+        table.insert(t, str)  -- not the best solution, but work
+    end
+    return t[2]
+end
+
+function read_version_from_dtx(file)
+    if not file_exists(file) then return nil, FILE_NOT_FOUND end
+    local version_line = nil
+    for line in io.lines(file) do
+        local start_idx, end_idx = string.find(line, VERSION_CHECK_PATTERN)
+        if start_idx ~= nil then
+            version_line =  line
+            break
+        end
+    end
+    if version_line ~= nill then
+        return parse_version_from_dtx_line(version_line), OK
+    else
+        return nil, PATTERN_NOT_FOUND
+    end
+end
+
+--[[ Usage:
+x, y = read_version_from_dtx("sunpath.dtx")
+print(x, y)
+]]--
+
+
+function check_version_in_dtx(file)
+    local version, read_ok = read_version_from_dtx(file)
+    if version ~= nil then
+        return version
+    else 
+        if read_ok == FILE_NOT_FOUND then
+            print(string.format("File `%s' not found", file))
+        elseif read_ok == PATTERN_NOT_FOUND then
+            print(string.format("No version is found in file `%s'", file))
+            print("Please check if the pattern below exists in the given file")
+            print(VERSION_CHECK_PATTERN)
+        end
+        os.exit(1)
+    end
+end
+
+
+
 -- build script for sunpath.dtx
 module = "sunpath"
 bundle = ""
@@ -44,7 +109,7 @@ uploadconfig = {
     pkg          = "sunpath",
     description  = "Draw Sun path Chart",
     topic        = "tikz",
-    version      = "0.2-Alpha",
+    version      = check_version_in_dtx("sunpath.dtx"),
     author       = "Hồng-Phúc Bùi",
     uploader     = "Hồng-Phúc Bùi",
     email        = "hong-phuc.bui@htwsaar.de",
@@ -59,4 +124,20 @@ uploadconfig = {
     note         = [[Uploaded automatically by l3build]],
 }
   
-  
+
+
+
+-- returns functions to test them in Unittest
+return {
+    check_version_in_dtx,
+    read_version_from_dtx,
+    parse_version_from_dtx_line,
+    -- Error code
+    OK, FILE_NOT_FOUND, PATTERN_NOT_FOUND
+}
+
+
+
+
+
+
