@@ -95,6 +95,8 @@ In this section we will create this chart.
 
 \subsubsection{Outlines}
 
+User has to place \verb:\usepackage{sunpath}: in the preamble part of the document.
+
 The chart is a \TikZ-picture, so we need a \texttt{tikzpicture}-environment.
 We can also customize the distance from the centre of the chart to the horizon line by setup the option \texttt{spradius}.
 By default it is 5.5 in PGF xy coordinate. 
@@ -139,6 +141,7 @@ That is the inner brackets.
 As the name of the commando says, we can also draw more than the horizon line by adding some values of altitude in the range of the argument of the command \verb|\drawaltitudecircle|. 
 For example \verb:\drawaltitudecircle{{0,10,...,80,85}}: draws 10 circles of altitude.
 
+\marginpar{\texttt{drawaltitudecircle}}
 \begin{verbatim}
 \begin{tikzpicture}[spradius=6]
 \drawcrosshair
@@ -364,6 +367,7 @@ Just use your favourite programming language to process sun data.
 \drawgeodirection
 \end{tikzpicture}
 
+\vfill\newpage
 The part, which makes the chart nicer, is there:
 
 \begin{verbatim}
@@ -398,5 +402,52 @@ The part, which makes the chart nicer, is there:
   (P7) ;
 %...
 \end{verbatim}
+
+To set the altitude scale (and also the altitude lines) equidistance, just use the option \verb|altitude projection=equidistance|.
+The chart above with same data looks like the chart below with this option.
+
+\marginpar{\texttt{altitude projection\\ \hfill=equidistance}}
+\begin{tikzpicture}[spradius=6,altitude projection=equidistance]
+\tikzset{
+  sun path curve/.style={draw=red!20,thick},
+  sun point/.style={radius=2pt,draw=red,fill=red},  
+  sun label/.style={below,fill=white,outer sep=4pt,text=red},
+}
+\drawcrosshair
+\drawaltitudecircle{{0,10,...,80,85}}
+\drawazimuthline{{0,10,...,360}}{85}{70}
+\drawazimuthline{{0,5,...,360}}{80}{0}
+\drawazimuthtick
+
+\coordinate (P0) at (sunpath cs:azi=98.968673,alt=-0.208672);
+\coordinate (P1) at (sunpath cs:azi=102.009695,alt=2.035492);
+\coordinate (P2) at (sunpath cs:azi=126.513583,alt=19.499874);
+\coordinate (P3) at (sunpath cs:azi=156.854847,alt=31.593335);
+\coordinate (P4) at (sunpath cs:azi=192.292832,alt=33.425294);
+\coordinate (P5) at (sunpath cs:azi=224.708002,alt=24.034984);
+\coordinate (P6) at (sunpath cs:azi=250.626597,alt=7.619801);
+\coordinate (P7) at (sunpath cs:azi=260.810553,alt=-0.244637);
+\path[sun point] (P0) circle;
+\path[sun point] (P1) circle;
+\path[sun point] (P2) circle;
+\path[sun point] (P3) circle;
+\path[sun point] (P4) circle;
+\path[sun point] (P5) circle;
+\path[sun point] (P6) circle;
+\path[sun point] (P7) circle;
+\node[sun label,anchor=270-98.968673] at (P0) {07:44};
+\node[sun label,anchor=270-102.009695] at (P1) {08:00};
+\node[sun label,anchor=270-126.513583] at (P2) {10:00};
+\node[sun label,anchor=270-156.854847] at (P3) {12:00};
+\node[sun label,anchor=270-192.292832] at (P4) {14:00};
+\node[sun label,anchor=270-224.708002] at (P5) {16:00};
+\node[sun label,anchor=270-250.626597] at (P6) {18:00};
+\node[sun label,anchor=270-260.810553] at (P7) {18:53};
+\path[sun path curve] (P0) to [curve through={ (P1) .. (P2) .. (P3) .. (P4) .. (P5) .. (P6) }] (P7) ;
+
+\drawaltitudelabel[170]{{10,20,...,80,85}}
+\drawazimuthlabel{{0,15,...,350}}
+\drawgeodirection
+\end{tikzpicture}
 
 
