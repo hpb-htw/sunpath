@@ -60,7 +60,8 @@
 
 
 % \subsection{\texttt{tikz}-Options for the new coordinate system}
-% Setup  options for tikzpicture environment.
+% Setup  options for \texttt{tikzpicture} environment.
+%
 % \DescribeMacro{spradius} The radius of the 0° Altitude circle, default 5.5. 
 % This value can be accessed via macro \verb:\spradius:.
 %
@@ -71,7 +72,7 @@
 %
 % This value can be accessed via macro \verb:\sprojection:.
 
-% These options can be used like 
+% These options can be used like:
 % 
 % \begin{verbatim}
 % \begin{tikzpicture}[spradius=6,altitude projection=equidistance]
@@ -113,7 +114,7 @@
 %
 % \DescribeMacro{equidistance}
 % maps an altitude angle $\theta$ to the altitude radius on the diagram with the function
-%    \[e (\theta) = r - r\cdot \frac{\theta}{90}. \]
+%    \[e (\theta) = r - r \cdot \frac{\left\lvert \theta \right\rvert}{90}. \]
 %
 % \DescribeMacro{altradius}
 % this function is used in the coordinate system \texttt{sunpath} to determinate the altitude 
@@ -128,7 +129,7 @@
 \tikzset{  
   declare function = {
       spherical(\alt) = \spradius * cos(\alt);
-      equidistance(\alt) = \spradius - \spradius*\alt/90;
+      equidistance(\alt) = \spradius - \spradius*abs(\alt)/90;
       altradius(\alt) = \spprojection(\alt); 
       aziangle(\x) = 90 - \x;
   }
@@ -157,6 +158,20 @@
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % \subsection{Setup optical options for sunpath diagram}
+% These are pre-defined \TikZ{} style for components of the chart. They can be easily changed by using \cmd{\tikzset}.
+%
+% \DescribeMacro{sunpath grid} \tikz{\draw [sunpath grid] (0,0) -- (1,0);} style for azimuth lines and altitude circles 
+%
+% \DescribeMacro{sunpath tick} \tikz{\draw [sunpath tick] (0,0) -- (4pt,0);} style for ticks around the horizon line
+%
+% \DescribeMacro{sunpath minor tick} \tikz{\draw [sunpath minor tick] (0,0) -- (4pt,0);} style for minor ticks around horizon line
+%
+% \DescribeMacro{altitude label} \tikz{\node[altitude label] {80};}
+%
+% \DescribeMacro{azimuth label}  \tikz{\node[altitude label] {350};} style for text label of altitude circle respective azimuth line
+% 
+% \DescribeMacro{direction label} \tikz{\node[direction label] {N E S W}; } style for text label of four directions
+%
 %    \begin{macrocode}
 \tikzset{
   sunpath grid/.style={help lines,color=blue!45!white!80},
@@ -172,33 +187,59 @@
       minimum width={width("360")+2pt},
       inner sep=0.5pt
   },
+  direction label/.style={
+      font=\normalsize\rmfamily
+  }
 }
 %    \end{macrocode}
-%
-%
+
+
 % \subsection{Expose some commands for end-user}
-%    \begin{macrocode}
-\NewDocumentCommand\drawcrosshair{}{
-    \draw[sunpath grid] (-\spradius,0) -- (\spradius,0);
-    \draw[sunpath grid] (0,-\spradius) -- (0,\spradius);
-}
-%    \end{macrocode}
+
+% \DescribeMacro{\drawcrosshair\oarg{style}}
+%
+% Draws a thin line from North to South and a thin line from East to West. 
+% Default value of \oarg{style} is \texttt{sunpath grid}.
 %
 %    \begin{macrocode}
-\NewDocumentCommand\drawgeodirection{}{
+\NewDocumentCommand\drawcrosshair{O{sunpath grid}}{
+    \draw[#1] (-\spradius,0) -- (\spradius,0);
+    \draw[#1] (0,-\spradius) -- (0,\spradius);
+}
+%    \end{macrocode}
+
+
+
+
+% \DescribeMacro{\drawgeodirection \oarg{offset}\oarg{style}} 
+%
+% Puts four geographic directions North, East, South, West around the horinzon line.
+% \oarg{offset} is the distance from horizon to the \TikZ{} node of the directions.
+% Its default value is 22pt. 
+% Set it to zero causes that the directions are set very near to the horizon line.
+%    \begin{macrocode}
+\NewDocumentCommand\drawgeodirection{O{22pt} O{direction label}}{
   \foreach \dname / \dgrad in {N/0, E/90, S/180, W/270}{
       \tikzmath{
         \polarangle = aziangle(\dgrad);
       }
-      \coordinate (D) at (\polarangle:\spradius cm + 22pt);
-      \node[anchor=270-\dgrad] at (D) {\dname};
+      \coordinate (D) at (\polarangle:\spradius cm + #1);
+      \node[#2,anchor=270-\dgrad] at (D) {\dname};
   };
 }
 %    \end{macrocode}
+
+
+
+
+% \DescribeMacro{\drawaltitudecircle \marg{range}\oarg{style}}
 %
-%
+% Draws altitude circle given by \marg{range}. 
+% The argument \marg{range} must be a valid \TikZ-range, which can be used in \cmd{\foreach}.
+% For example \verb|{{10,20,...,80,85}}|.
+% The argument \oarg{style} define the style of altitude circles, default is \texttt{sunpath~grid}.
 %    \begin{macrocode}
-\NewDocumentCommand\drawaltitudecircle{m}{
+\NewDocumentCommand\drawaltitudecircle{m O{sunpath grid}}{
   \foreach \altitude in #1 {
     \coordinate (A) at (sunpath cs:azi=0,alt=\altitude) ;  
     \path[draw,sunpath grid] (0,0) circle[radius=altradius(\altitude)];
@@ -206,29 +247,48 @@
 }
 %    \end{macrocode}
 %
+
+
+
+
+% \DescribeMacro{\drawaltitudelabel \marg{range}\oarg{azimuth}\oarg{style}}
+% 
+% Draws the labels of altitude circles given by \marg{range}. 
+% Range must be an in \TikZ{} valid numeric range which can be used in \cmd{\foreach}.
+% For example \verb|{{10,20,...,80}}|
+% The labels are placed along the azimuth \oarg{azimuth} (default 135)
+% and typeset with style \oarg{style} (default \texttt{altitude label}).
 %
 %    \begin{macrocode}
-\NewDocumentCommand\drawaltitudelabel{O{135}m}{
-  \foreach \altitude in #2 {
-      \coordinate (A) at (sunpath cs:azi=#1,alt=\altitude) ;      
-      \node [anchor=east,altitude label] at (A) {\altitude};  
+\NewDocumentCommand\drawaltitudelabel{m O{135} O{altitude label}}{
+  \foreach \altitude in #1 {
+      \coordinate (A) at (sunpath cs:azi=#2,alt=\altitude) ;      
+      \node [anchor=east,#3] at (A) {\altitude};  
     }
 }
 %    \end{macrocode}
-%
+
+
+
+
+% \DescribeMacro{\drawazimuthlabel \marg{range}\oarg{style}}
 %
 %    \begin{macrocode}
-\NewDocumentCommand\drawazimuthlabel{m}{
+\NewDocumentCommand\drawazimuthlabel{m O{azimuth label}}{
   \foreach \azimuth in #1 {
       \tikzmath{
         \polarangle = aziangle(\azimuth);
       }
       \coordinate (D) at (\polarangle:\spradius cm + 13pt);
-      \node[azimuth label] at (D) {\azimuth};
+      \node[#2] at (D) {\azimuth};
   }
 }
 %    \end{macrocode}
-%
+
+
+
+
+% \DescribeMacro{\drawazimuthline \marg{range}\marg{start~alt}\marg{end~alt}}
 %
 %    \begin{macrocode}
 \NewDocumentCommand\drawazimuthline{m m m}{
@@ -237,7 +297,11 @@
   }
 }
 %    \end{macrocode}
-%
+
+
+
+
+% \DescribeMacro{\drawazimuthtick}
 %
 %    \begin{macrocode}
 \NewDocumentCommand\drawazimuthtick{}{
@@ -255,7 +319,7 @@
     \path[sunpath minor tick] (\pa:\spradius) -- (\pa:{\spradius cm+2.5pt});
   }
   
-  \foreach \azimuth in {15,30,...,360}{
+  \foreach \azimuth in {15,45,...,360}{
       \tikzmath{      
           \pa = aziangle(\azimuth);
       }
@@ -263,8 +327,10 @@
     }  
 }
 %    \end{macrocode}
-%
-%
+
+
+
+
 %%%%%%%%%%%%%%
 \endinput
 %%%%%%%%%%%%%%

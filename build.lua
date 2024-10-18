@@ -92,7 +92,7 @@ typesetdemofiles = {
     "sunpath.spherical.tex",
     "sunpath.equidistance.tex",
     "sunpath.track.tex",
-    -- these files are for testing this package in difference classes!
+    --- these files are for testing this package in difference classes!
     --"sunpath.l3doc.tex",    -- this will not work   
     "sunpath.article.tex",    -- test with article class
     "sunpath.scrartcl.tex"   -- test with scrartcl class

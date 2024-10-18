@@ -6,12 +6,13 @@ PACKAGE := sunpath
 
 # SVG tagrgets
 pdf_svg = sunpath.spherical.pdf sunpath.equidistance.pdf sunpath.track.pdf
-svgs = sunpath.spherical.svg sunpath.equidistance.svg sunpath.track.svg
+svgs = $(pdf_svg:.pdf=.svg)
 
 
 .PHONY: doc
 doc:
 	$(ENV_VAR) l3build doc
+	make svg
 
 .PHONY: clean
 clean:
@@ -25,11 +26,18 @@ clean:
 	rm -fv $(PACKAGE).sty
 	rm -fv support/*.{log,aux,out}
 	make clean-svg
-	#rm -fv $(FILECONTENTS)
+
+
 
 .PHONY: clean-support
 clean-support:
 	make -C support clean
+
+
+$(PACKAGE).sty: $(PACKAGE).dtx $(PACKAGE).ins
+	l3build unpack
+
+
 
 .PHONY: debug
 debug:
@@ -49,7 +57,7 @@ dryinstall:
 
 .PHONY: install
 install:
-	make clean
+	make doc
 	l3build install
 
 .PHONY: upload

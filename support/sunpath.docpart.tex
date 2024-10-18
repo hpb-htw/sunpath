@@ -50,20 +50,13 @@ This package provides tools to plot sun path on the horizontal plane.
 \begin{tikzpicture}[spradius=3]
 \drawcrosshair;
 \drawaltitudecircle{{0}}
-%\drawazimuthline{{0,10,...,360}}{85}{70}
-%\drawazimuthline{{0,5,...,360}}{80}{0}
-
-%\drawazimuthtick
-
-\drawgeodirection
-%\drawaltitudelabel{{10,20,...,80,85}}
-%\drawazimuthlabel{{0,15,...,350}} ;  
-
+\drawgeodirection[0pt]
 \path[draw=red,fill=red](sunpath cs:azi=110,alt=66) circle[radius=2pt] ;
 \end{tikzpicture}
 \caption{Projection of the sun on the horizon plane}
 \label{fig:sun-projection}
 \end{figure}
+
 
 \subsection{Draw a Sun path chart}
 
@@ -108,7 +101,7 @@ In this example we make it a little bigger:
 \end{tikzpicture}
 \end{verbatim}
 
-We also need the crosshair, the horizon line --in this chart it is a circle--, 
+We also need the crosshair, the horizon line --in this type of sun path chart it is a circle--, 
 the fours geographic direction.
 This can be done by adding more commands into the \texttt{tikzpicture}
 
@@ -250,7 +243,7 @@ The result would be
 \begin{verbatim}
 % ...
 \path[fill=red,draw=red] (sunpath cs:azi=150,alt=35) circle[radius=2pt];
-\drawaltitudelabel[160]{{10,20,...,80,85}}
+\drawaltitudelabel{{10,20,...,80,85}}[160]
 % ...
 \end{verbatim}
 
@@ -264,7 +257,7 @@ The result would be
 
 \path[fill=red,draw=red] (sunpath cs:azi=150,alt=35) circle[radius=2pt];
 
-\drawaltitudelabel[160]{{10,20,...,80,85}}
+\drawaltitudelabel{{10,20,...,80,85}}[160]
 \drawazimuthlabel{{0,15,...,350}}
 \drawgeodirection
 \end{tikzpicture}
@@ -362,7 +355,7 @@ Just use your favourite programming language to process sun data.
 \node[sun label,anchor=270-260.810553] at (P7) {18:53};
 \path[sun path curve] (P0) to [curve through={ (P1) .. (P2) .. (P3) .. (P4) .. (P5) .. (P6) }] (P7) ;
 
-\drawaltitudelabel[170]{{10,20,...,80,85}}
+\drawaltitudelabel{{10,20,...,80,85}}[170]
 \drawazimuthlabel{{0,15,...,350}}
 \drawgeodirection
 \end{tikzpicture}
@@ -445,7 +438,7 @@ The chart above with same data looks like the chart below with this option.
 \node[sun label,anchor=270-260.810553] at (P7) {18:53};
 \path[sun path curve] (P0) to [curve through={ (P1) .. (P2) .. (P3) .. (P4) .. (P5) .. (P6) }] (P7) ;
 
-\drawaltitudelabel[170]{{10,20,...,80,85}}
+\drawaltitudelabel{{10,20,...,80,85}}[170]
 \drawazimuthlabel{{0,15,...,350}}
 \drawgeodirection
 \end{tikzpicture}
