@@ -29,6 +29,9 @@
 %<package>\ProvidesPackage{sunpath}[2024/10/16 v0.3-Alpha Draw Sun Path]
 % \fi
 
+% \changes{v0.4-Alpha}
+%         {2024/10/20}
+%         {rename option altitude projection to altitude mapping}
 % \changes{v0.3-Alpha}
 %         {2024/10/16}
 %         {add style option in exposed commands; 
@@ -66,12 +69,14 @@
 % \DescribeMacro{spradius} The radius of the 0° Altitude circle, default 5.5. 
 % This value can be accessed via macro \verb:\spradius:.
 %
-% \DescribeMacro{altitude projection} 
-% How the altitude of the sun is "projected" on the sunpath diagram. 
+% \DescribeMacro{altitude mapping} 
+% How the altitude of the sun is mapped on the sunpath diagram. 
+% This mapping is a function $f(\theta): [-90,90] \to [0, r]$, where $r$ is saved in \verb|\spradius|.
+%
 % Valid values are \texttt{spherical} and \texttt{equidistance}.
 % Its default value is \texttt{spherical}.
 %
-% This value can be accessed via macro \verb:\sprojection:.
+% This value can be accessed via macro \verb:\altmapping:.
 
 % These options can be used like:
 % 
@@ -85,8 +90,8 @@
 \pgfkeys{/tikz/.cd,
   spradius/.store in=\spradius,
   spradius=5.5,
-  altitude projection/.store in = \spprojection,
-  altitude projection=spherical
+  altitude mapping/.store in = \altmapping,
+  altitude mapping=spherical
 }
 %    \end{macrocode}
 %
@@ -131,7 +136,7 @@
   declare function = {
       spherical(\alt) = \spradius * cos(\alt);
       equidistance(\alt) = \spradius - \spradius*abs(\alt)/90;
-      altradius(\alt) = \spprojection(\alt); 
+      altradius(\alt) = \altmapping(\alt); 
       aziangle(\x) = 90 - \x;
   }
 } 
@@ -222,7 +227,7 @@
 \NewDocumentCommand\drawgeodirection{O{22pt} O{direction label}}{
   \foreach \dname / \dgrad in {N/0, E/90, S/180, W/270}{
       \tikzmath{
-        \polarangle = aziangle(\dgrad);
+        \polarangle = aziangle(\dgrad)
       }
       \coordinate (D) at (\polarangle:\spradius cm + #1);
       \node[#2,anchor=270-\dgrad] at (D) {\dname};
