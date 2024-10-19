@@ -74,7 +74,7 @@ In this section we will create this chart.
 \spazimuthline{{0,10,...,360}}{85}{70}
 \spazimuthline{{0,5,...,360}}{80}{0}
 
-\spzimuthtick
+\spazimuthtick
 
 \spgeodirection
 \spaltitudelabel{{10,20,...,80,85}}
@@ -182,7 +182,7 @@ For example
 \end{tikzpicture}
 
 To draw azimuth ticks outside the horizon line, we can use 
-\verb:\spzimuthtick:. 
+\verb:\spazimuthtick:. 
 This command expects for now no argument.
 
 \begin{verbatim}
@@ -191,7 +191,7 @@ This command expects for now no argument.
 \spaltitudecircle{{0,10,...,80,85}}
 \spazimuthline{{0,10,...,360}}{85}{70}
 \spazimuthline{{0,5,...,360}}{80}{0}
-\spzimuthtick
+\spazimuthtick
 
 \spgeodirection
 \end{tikzpicture}
@@ -203,7 +203,7 @@ This command expects for now no argument.
 \spaltitudecircle{{0,10,...,80,85}}
 \spazimuthline{{0,10,...,360}}{85}{70}
 \spazimuthline{{0,5,...,360}}{80}{0}
-\spzimuthtick
+\spazimuthtick
 
 \spgeodirection
 \end{tikzpicture}
@@ -220,7 +220,7 @@ To draw labels of azimuth lines and altitude circles in the chart, we can use th
 \spaltitudecircle{{0,10,...,80,85}}
 \spazimuthline{{0,10,...,360}}{85}{70}
 \spazimuthline{{0,5,...,360}}{80}{0}
-\spzimuthtick
+\spazimuthtick
 
 \spaltitudelabel{{10,20,...,80,85}}
 \spazimuthlabel{{0,15,...,350}}
@@ -253,7 +253,7 @@ The result would be
 \spaltitudecircle{{0,10,...,80,85}}
 \spazimuthline{{0,10,...,360}}{85}{70}
 \spazimuthline{{0,5,...,360}}{80}{0}
-\spzimuthtick
+\spazimuthtick
 
 \path[fill=red,draw=red] (sunpath cs:azi=150,alt=35) circle[radius=2pt];
 
@@ -294,7 +294,7 @@ we can get a sun path like this:
 \spaltitudecircle{{0,10,...,80,85}}
 \spazimuthline{{0,10,...,360}}{85}{70}
 \spazimuthline{{0,5,...,360}}{80}{0}
-\spzimuthtick
+\spazimuthtick
 
 \path[sunpath curve] 
   (sunpath cs:azi=98.968673,alt=-0.208672) circle[sunpath point] node[sunpath node]{ { 07:44 } }
@@ -327,7 +327,7 @@ Just use your favourite programming language to process sun data.
 \spaltitudecircle{{0,10,...,80,85}}
 \spazimuthline{{0,10,...,360}}{85}{70}
 \spazimuthline{{0,5,...,360}}{80}{0}
-\spzimuthtick
+\spazimuthtick
 
 \coordinate (P0) at (sunpath cs:azi=98.968673,alt=-0.208672);
 \coordinate (P1) at (sunpath cs:azi=102.009695,alt=2.035492);
@@ -411,7 +411,7 @@ The chart above with same data looks like the chart below with this option.
 \spaltitudecircle{{0,10,...,80,85}}
 \spazimuthline{{0,10,...,360}}{85}{70}
 \spazimuthline{{0,5,...,360}}{80}{0}
-\spzimuthtick
+\spazimuthtick
 
 \coordinate (P0) at (sunpath cs:azi=98.968673,alt=-0.208672);
 \coordinate (P1) at (sunpath cs:azi=102.009695,alt=2.035492);

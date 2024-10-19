@@ -311,7 +311,7 @@
 
 
 
-% \DescribeMacro{\spzimuthtick}  \oarg{major}\oarg{minor}\oarg{mid}
+% \DescribeMacro{\spazimuthtick}  \oarg{major}\oarg{minor}\oarg{mid}
 % 
 % Draws ticks along and outside the horizon circle. The optional arguments \oarg{major},
 % \oarg{minor} and \oarg{mid} are the length of major ticks (every 10° from Zero),
@@ -319,7 +319,7 @@
 % Their default values are 6pt, 2.5pt and 5pt.
 %
 %    \begin{macrocode}
-\NewDocumentCommand\spzimuthtick{O{6pt} O{2.5pt} O{5pt}}{
+\NewDocumentCommand\spazimuthtick{O{6pt} O{2.5pt} O{5pt}}{
   \foreach \azimuth in {10,20,...,360}{
     \tikzmath{      
         \pa = aziangle(\azimuth);
