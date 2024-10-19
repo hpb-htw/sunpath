@@ -48,7 +48,7 @@ This package provides tools to plot sun path on the horizontal plane.
 \begin{figure}[H]
 \centering
 \begin{tikzpicture}[spradius=3]
-\drawcrosshair;
+\drawcrosshair
 \drawaltitudecircle{{0}}
 \drawgeodirection[0pt]
 \path[draw=red,fill=red](sunpath cs:azi=110,alt=66) circle[radius=2pt] ;
@@ -78,7 +78,7 @@ In this section we will create this chart.
 
 \drawgeodirection
 \drawaltitudelabel{{10,20,...,80,85}}
-\drawazimuthlabel{{0,15,...,350}} ;  
+\drawazimuthlabel{{0,15,...,350}}
 
 \path[draw=red,fill=red](sunpath cs:azi=110,alt=66) circle[radius=2pt] node[below] {{9:30}};
 \end{tikzpicture}
