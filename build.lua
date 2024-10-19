@@ -86,9 +86,9 @@ typesetsuppfiles = {
 typesetfiles  = {
     -- keep this option empty. Documents are written in sunpath.tex.
     -- See below
+    "sunpath.tex",    -- main document file
 }
 typesetdemofiles = {
-    "sunpath.tex",    -- main document file
     "sunpath.spherical.tex",
     "sunpath.equidistance.tex",
     "sunpath.track.tex",

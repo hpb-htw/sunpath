@@ -4,6 +4,8 @@ ENV_VAR := export max_print_line=1000;
 # FILECONTENTS = anatomy-of* using-a-* java-* recursive-with-bug*
 PACKAGE := sunpath
 
+
+
 # SVG tagrgets
 pdf_svg = sunpath.spherical.pdf sunpath.equidistance.pdf sunpath.track.pdf
 svgs = $(pdf_svg:.pdf=.svg)
@@ -24,7 +26,7 @@ clean:
 	rm -fv $(PACKAGE) $(PACKAGE)-ctan.curlopt
 	rm -fv $(PACKAGE).*.pdf
 	rm -fv $(PACKAGE).sty
-	rm -fv support/*.{log,aux,out}
+	make clean-support
 	make clean-svg
 
 
@@ -32,6 +34,10 @@ clean:
 .PHONY: clean-support
 clean-support:
 	make -C support clean
+
+
+$(PACKAGE).pdf: $(PACKAGE).tex $(PACKAGE).sty support/sunpath.docpart.tex support/horizontal-coordinate.pdf
+	l3build doc $(PACKAGE)
 
 
 $(PACKAGE).sty: $(PACKAGE).dtx $(PACKAGE).ins
