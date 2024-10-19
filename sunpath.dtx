@@ -202,7 +202,7 @@
 
 % \subsection{Expose some commands for end-user}
 
-% \DescribeMacro{\drawcrosshair\oarg{style}}
+% \DescribeMacro{\drawcrosshair} \oarg{style}
 %
 % Draws a thin line from North to South and a thin line from East to West. 
 % Default value of \oarg{style} is \texttt{sunpath grid}.
@@ -217,7 +217,8 @@
 
 
 
-% \DescribeMacro{\drawgeodirection \oarg{offset}\oarg{style}} 
+% \DescribeMacro{\drawgeodirection} \oarg{offset}\oarg{style}
+%
 %
 % Puts four geographic directions North, East, South, West around the horinzon line.
 % \oarg{offset} is the distance from horizon to the \TikZ{} node of the directions.
@@ -227,18 +228,18 @@
 \NewDocumentCommand\drawgeodirection{O{22pt} O{direction label}}{
   \foreach \dname / \dgrad in {N/0, E/90, S/180, W/270}{
       \tikzmath{
-        \polarangle = aziangle(\dgrad)
+        \polarangle = aziangle(\dgrad);
       }
       \coordinate (D) at (\polarangle:\spradius cm + #1);
       \node[#2,anchor=270-\dgrad] at (D) {\dname};
-  };
+  }
 }
 %    \end{macrocode}
 
 
 
 
-% \DescribeMacro{\drawaltitudecircle \marg{range}\oarg{style}}
+% \DescribeMacro{\drawaltitudecircle}  \marg{range}\oarg{style}
 %
 % Draws altitude circle given by \marg{range}. 
 % The argument \marg{range} must be a valid \TikZ-range, which can be used in \cmd{\foreach}.
@@ -256,7 +257,7 @@
 
 
 
-% \DescribeMacro{\drawaltitudelabel \marg{range}\oarg{azimuth}\oarg{style}}
+% \DescribeMacro{\drawaltitudelabel}  \marg{range}\oarg{azimuth}\oarg{style}
 % 
 % Draws the labels of altitude circles given by \marg{range}. 
 % Range must be an in \TikZ{} valid numeric range which can be used in \cmd{\foreach}.
@@ -276,7 +277,7 @@
 
 
 
-% \DescribeMacro{\drawazimuthlabel \marg{range}\oarg{style}}
+% \DescribeMacro{\drawazimuthlabel}  \marg{range}\oarg{style}
 %
 %    \begin{macrocode}
 \NewDocumentCommand\drawazimuthlabel{m O{azimuth label}}{
@@ -293,7 +294,7 @@
 
 
 
-% \DescribeMacro{\drawazimuthline \marg{range}\marg{start~alt}\marg{end~alt}}
+% \DescribeMacro{\drawazimuthline} \marg{range}\marg{start~alt}\marg{end~alt}
 %
 %    \begin{macrocode}
 \NewDocumentCommand\drawazimuthline{m m m}{
@@ -307,7 +308,7 @@
 
 
 
-% \DescribeMacro{\drawazimuthtick \oarg{major}\oarg{minor}\oarg{mid}}
+% \DescribeMacro{\drawazimuthtick}  \oarg{major}\oarg{minor}\oarg{mid}
 % 
 % Draws ticks along and outside the horizon circle. The optional arguments \oarg{major},
 % \oarg{minor} and \oarg{mid} are the length of major ticks (every 10° from Zero),
