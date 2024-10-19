@@ -31,7 +31,8 @@
 
 % \changes{v0.3-Alpha}
 %         {2024/10/16}
-%         {add option for style in exposed command}
+%         {add style option in exposed commands; 
+%          let build.lua read version information from sunpath.dtx file}
 %
 % \changes{v0.2-Alpha}
 %         {2024/10/16}
@@ -293,7 +294,8 @@
 %    \begin{macrocode}
 \NewDocumentCommand\drawazimuthline{m m m}{
   \foreach \azimuth in #1{
-      \draw[sunpath grid] (sunpath cs:azi=\azimuth,alt={#2}) -- (sunpath cs:azi=\azimuth,alt={#3});
+      \draw[sunpath grid]
+        (sunpath cs:azi=\azimuth,alt={#2}) -- (sunpath cs:azi=\azimuth,alt={#3});
   }
 }
 %    \end{macrocode}
@@ -301,29 +303,34 @@
 
 
 
-% \DescribeMacro{\drawazimuthtick}
+% \DescribeMacro{\drawazimuthtick \oarg{major}\oarg{minor}\oarg{mid}}
+% 
+% Draws ticks along and outside the horizon circle. The optional arguments \oarg{major},
+% \oarg{minor} and \oarg{mid} are the length of major ticks (every 10° from Zero),
+% minor ticks (every 1°, from 1°) and the length of the middle ticks (every 30°, from 15°). 
+% Their default values are 6pt, 2.5pt and 5pt.
 %
 %    \begin{macrocode}
-\NewDocumentCommand\drawazimuthtick{}{
+\NewDocumentCommand\drawazimuthtick{O{6pt} O{2.5pt} O{5pt}}{
   \foreach \azimuth in {10,20,...,360}{
     \tikzmath{      
         \pa = aziangle(\azimuth);
     }
-    \path[sunpath tick] (\pa:\spradius) -- (\pa:{\spradius cm+6pt});
+    \path[sunpath tick] (\pa:\spradius) -- (\pa:{\spradius cm + #1});
   }
   
   \foreach \azimuth in {1,2,...,360}{
     \tikzmath{      
         \pa = aziangle(\azimuth);
     }
-    \path[sunpath minor tick] (\pa:\spradius) -- (\pa:{\spradius cm+2.5pt});
+    \path[sunpath minor tick] (\pa:\spradius) -- (\pa:{\spradius cm + #2});
   }
   
-  \foreach \azimuth in {15,45,...,360}{
+  \foreach \azimuth in {15,45,...,345}{
       \tikzmath{      
           \pa = aziangle(\azimuth);
       }
-      \path[sunpath minor tick] (\pa:\spradius) -- (\pa:{\spradius cm+5pt});
+      \path[sunpath minor tick] (\pa:\spradius) -- (\pa:{\spradius cm + #3});
     }  
 }
 %    \end{macrocode}
