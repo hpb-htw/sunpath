@@ -48,9 +48,9 @@ This package provides tools to plot sun path on the horizontal plane.
 \begin{figure}[H]
 \centering
 \begin{tikzpicture}[spradius=3]
-\drawcrosshair
-\drawaltitudecircle{{0}}
-\drawgeodirection[0pt]
+\spcrosshair
+\spaltitudecircle{{0}}
+\spgeodirection[0pt]
 \path[draw=red,fill=red](sunpath cs:azi=110,alt=66) circle[radius=2pt] ;
 \end{tikzpicture}
 \caption{Projection of the sun on the horizon plane}
@@ -69,16 +69,16 @@ In this section we will create this chart.
 \begin{figure}[H]
 \centering
 \begin{tikzpicture}
-\drawcrosshair
-\drawaltitudecircle{{0,10,...,80,85}}
-\drawazimuthline{{0,10,...,360}}{85}{70}
-\drawazimuthline{{0,5,...,360}}{80}{0}
+\spcrosshair
+\spaltitudecircle{{0,10,...,80,85}}
+\spazimuthline{{0,10,...,360}}{85}{70}
+\spazimuthline{{0,5,...,360}}{80}{0}
 
-\drawazimuthtick
+\spzimuthtick
 
-\drawgeodirection
-\drawaltitudelabel{{10,20,...,80,85}}
-\drawazimuthlabel{{0,15,...,350}}
+\spgeodirection
+\spaltitudelabel{{10,20,...,80,85}}
+\spazimuthlabel{{0,15,...,350}}
 
 \path[draw=red,fill=red](sunpath cs:azi=110,alt=66) circle[radius=2pt] node[below] {{9:30}};
 \end{tikzpicture}
@@ -107,17 +107,17 @@ This can be done by adding more commands into the \texttt{tikzpicture}
 
 \begin{verbatim}
 \begin{tikzpicture}[spradius=6]
-\drawcrosshair
-\drawaltitudecircle{{0}}
-\drawgeodirection
+\spcrosshair
+\spaltitudecircle{{0}}
+\spgeodirection
 \end{tikzpicture}
 \end{verbatim}
 
 \marginpar{\texttt{drawcrosshair\\ drawgeodirection\\ drawaltitudecircle}}
 \begin{tikzpicture}[spradius=6]
-\drawcrosshair
-\drawaltitudecircle{{0}}
-\drawgeodirection
+\spcrosshair
+\spaltitudecircle{{0}}
+\spgeodirection
 \end{tikzpicture}
 
 
@@ -131,22 +131,22 @@ That is the inner brackets.
 \subsubsection{Scalar and labels}
 
 
-As the name of the commando says, we can also draw more than the horizon line by adding some values of altitude in the range of the argument of the command \verb|\drawaltitudecircle|. 
-For example \verb:\drawaltitudecircle{{0,10,...,80,85}}: draws 10 circles of altitude.
+As the name of the commando says, we can also draw more than the horizon line by adding some values of altitude in the range of the argument of the command \verb|\spaltitudecircle|. 
+For example \verb:\spaltitudecircle{{0,10,...,80,85}}: draws 10 circles of altitude.
 
 \marginpar{\texttt{drawaltitudecircle}}
 \begin{verbatim}
 \begin{tikzpicture}[spradius=6]
-\drawcrosshair
-\drawaltitudecircle{{0,10,...,80,85}}
-\drawgeodirection
+\spcrosshair
+\spaltitudecircle{{0,10,...,80,85}}
+\spgeodirection
 \end{tikzpicture}
 \end{verbatim}
 
 \begin{tikzpicture}[spradius=6]
-\drawcrosshair
-\drawaltitudecircle{{0,10,...,80,85}}
-\drawgeodirection
+\spcrosshair
+\spaltitudecircle{{0,10,...,80,85}}
+\spgeodirection
 \end{tikzpicture}
 
 
@@ -156,75 +156,75 @@ from the higher altitude \verb:h: to the lower altitude \verb:l:.
 For example
 
 \begin{itemize}
-  \item \verb:\drawazimuthline{{0,10,...,360}}{85}{70}: draws every 10° azimuth from the 85° altitude to to 70° altitude.
-  \item \verb:\drawazimuthline{{0,5,...,360}}{80}{0}: draws every 5° azimuth from the 80° altitude to to 0° altitude.
+  \item \verb:\spazimuthline{{0,10,...,360}}{85}{70}: draws every 10° azimuth from the 85° altitude to to 70° altitude.
+  \item \verb:\spazimuthline{{0,5,...,360}}{80}{0}: draws every 5° azimuth from the 80° altitude to to 0° altitude.
 \end{itemize}
 
 \begin{verbatim}
 \begin{tikzpicture}[spradius=6]
-\drawcrosshair
-\drawaltitudecircle{{0,10,...,80,85}}
-\drawazimuthline{{0,10,...,360}}{85}{70}
-\drawazimuthline{{0,5,...,360}}{80}{0}
+\spcrosshair
+\spaltitudecircle{{0,10,...,80,85}}
+\spazimuthline{{0,10,...,360}}{85}{70}
+\spazimuthline{{0,5,...,360}}{80}{0}
 
-\drawgeodirection
+\spgeodirection
 \end{tikzpicture}
 \end{verbatim}
 
 \marginpar{\texttt{drawazimuthline}}
 \begin{tikzpicture}[spradius=6]
-\drawcrosshair
-\drawaltitudecircle{{0,10,...,80,85}}
-\drawazimuthline{{0,10,...,360}}{85}{70}
-\drawazimuthline{{0,5,...,360}}{80}{0}
+\spcrosshair
+\spaltitudecircle{{0,10,...,80,85}}
+\spazimuthline{{0,10,...,360}}{85}{70}
+\spazimuthline{{0,5,...,360}}{80}{0}
 
-\drawgeodirection
+\spgeodirection
 \end{tikzpicture}
 
 To draw azimuth ticks outside the horizon line, we can use 
-\verb:\drawazimuthtick:. 
+\verb:\spzimuthtick:. 
 This command expects for now no argument.
 
 \begin{verbatim}
 \begin{tikzpicture}[spradius=6]
-\drawcrosshair
-\drawaltitudecircle{{0,10,...,80,85}}
-\drawazimuthline{{0,10,...,360}}{85}{70}
-\drawazimuthline{{0,5,...,360}}{80}{0}
-\drawazimuthtick
+\spcrosshair
+\spaltitudecircle{{0,10,...,80,85}}
+\spazimuthline{{0,10,...,360}}{85}{70}
+\spazimuthline{{0,5,...,360}}{80}{0}
+\spzimuthtick
 
-\drawgeodirection
+\spgeodirection
 \end{tikzpicture}
 \end{verbatim}
 
 \marginpar{\texttt{drawazimuthtick}}
 \begin{tikzpicture}[spradius=6]
-\drawcrosshair
-\drawaltitudecircle{{0,10,...,80,85}}
-\drawazimuthline{{0,10,...,360}}{85}{70}
-\drawazimuthline{{0,5,...,360}}{80}{0}
-\drawazimuthtick
+\spcrosshair
+\spaltitudecircle{{0,10,...,80,85}}
+\spazimuthline{{0,10,...,360}}{85}{70}
+\spazimuthline{{0,5,...,360}}{80}{0}
+\spzimuthtick
 
-\drawgeodirection
+\spgeodirection
 \end{tikzpicture}
 
 
 To draw labels of azimuth lines and altitude circles in the chart, we can use the commands 
 
-\verb:\drawaltitudelabel{r}: and
+\verb:\spaltitudelabel{r}: and
 
-\verb:\drawazimuthlabel{r}:.
+\verb:\spazimuthlabel{r}:.
 
 \begin{tikzpicture}[spradius=6]
-\drawcrosshair
-\drawaltitudecircle{{0,10,...,80,85}}
-\drawazimuthline{{0,10,...,360}}{85}{70}
-\drawazimuthline{{0,5,...,360}}{80}{0}
-\drawazimuthtick
+\spcrosshair
+\spaltitudecircle{{0,10,...,80,85}}
+\spazimuthline{{0,10,...,360}}{85}{70}
+\spazimuthline{{0,5,...,360}}{80}{0}
+\spzimuthtick
 
-\drawaltitudelabel{{10,20,...,80,85}}
-\drawazimuthlabel{{0,15,...,350}}
-\drawgeodirection
+\spaltitudelabel{{10,20,...,80,85}}
+\spazimuthlabel{{0,15,...,350}}
+\spgeodirection
 \end{tikzpicture}
 
 That it's, now we have a nice chart, on which we can draw positions of the sun from time to time.
@@ -243,26 +243,26 @@ The result would be
 \begin{verbatim}
 % ...
 \path[fill=red,draw=red] (sunpath cs:azi=150,alt=35) circle[radius=2pt];
-\drawaltitudelabel{{10,20,...,80,85}}[160]
+\spaltitudelabel{{10,20,...,80,85}}[160]
 % ...
 \end{verbatim}
 
 \marginpar{\texttt{sunpath cs}}
 \begin{tikzpicture}[spradius=6]
-\drawcrosshair
-\drawaltitudecircle{{0,10,...,80,85}}
-\drawazimuthline{{0,10,...,360}}{85}{70}
-\drawazimuthline{{0,5,...,360}}{80}{0}
-\drawazimuthtick
+\spcrosshair
+\spaltitudecircle{{0,10,...,80,85}}
+\spazimuthline{{0,10,...,360}}{85}{70}
+\spazimuthline{{0,5,...,360}}{80}{0}
+\spzimuthtick
 
 \path[fill=red,draw=red] (sunpath cs:azi=150,alt=35) circle[radius=2pt];
 
-\drawaltitudelabel{{10,20,...,80,85}}[160]
-\drawazimuthlabel{{0,15,...,350}}
-\drawgeodirection
+\spaltitudelabel{{10,20,...,80,85}}[160]
+\spazimuthlabel{{0,15,...,350}}
+\spgeodirection
 \end{tikzpicture}
 
-The command \verb:\drawaltitudelabel: can also take an optional argument to set altitude label on other azimuth.
+The command \verb:\spaltitudelabel: can also take an optional argument to set altitude label on other azimuth.
 This can be useful if the labels cover distract important points on chart.
 In this chart it is set to be 160°. So one can easily read the azimuth of the sun on the chart.
 
@@ -290,11 +290,11 @@ we can get a sun path like this:
   sunpath point/.style={radius=2pt,draw=red},
   sunpath node/.style={below,inner sep=0.5pt,outer sep=4.5pt,fill=white}
 }
-\drawcrosshair
-\drawaltitudecircle{{0,10,...,80,85}}
-\drawazimuthline{{0,10,...,360}}{85}{70}
-\drawazimuthline{{0,5,...,360}}{80}{0}
-\drawazimuthtick
+\spcrosshair
+\spaltitudecircle{{0,10,...,80,85}}
+\spazimuthline{{0,10,...,360}}{85}{70}
+\spazimuthline{{0,5,...,360}}{80}{0}
+\spzimuthtick
 
 \path[sunpath curve] 
   (sunpath cs:azi=98.968673,alt=-0.208672) circle[sunpath point] node[sunpath node]{ { 07:44 } }
@@ -307,9 +307,9 @@ we can get a sun path like this:
 --(sunpath cs:azi=260.810553,alt=-0.244637) circle[sunpath point] node[sunpath node]{ { 18:53 } }
 ;
 
-\drawaltitudelabel{{10,20,...,80,85}}
-\drawazimuthlabel{{0,15,...,350}}
-\drawgeodirection
+\spaltitudelabel{{10,20,...,80,85}}
+\spazimuthlabel{{0,15,...,350}}
+\spgeodirection
 \end{tikzpicture}
 
 But this chart is not nice. 
@@ -323,11 +323,11 @@ Just use your favourite programming language to process sun data.
   sun point/.style={radius=2pt,draw=red,fill=red},  
   sun label/.style={below,fill=white,outer sep=4pt,text=red},
 }
-\drawcrosshair
-\drawaltitudecircle{{0,10,...,80,85}}
-\drawazimuthline{{0,10,...,360}}{85}{70}
-\drawazimuthline{{0,5,...,360}}{80}{0}
-\drawazimuthtick
+\spcrosshair
+\spaltitudecircle{{0,10,...,80,85}}
+\spazimuthline{{0,10,...,360}}{85}{70}
+\spazimuthline{{0,5,...,360}}{80}{0}
+\spzimuthtick
 
 \coordinate (P0) at (sunpath cs:azi=98.968673,alt=-0.208672);
 \coordinate (P1) at (sunpath cs:azi=102.009695,alt=2.035492);
@@ -355,9 +355,9 @@ Just use your favourite programming language to process sun data.
 \node[sun label,anchor=270-260.810553] at (P7) {18:53};
 \path[sun path curve] (P0) to [curve through={ (P1) .. (P2) .. (P3) .. (P4) .. (P5) .. (P6) }] (P7) ;
 
-\drawaltitudelabel{{10,20,...,80,85}}[170]
-\drawazimuthlabel{{0,15,...,350}}
-\drawgeodirection
+\spaltitudelabel{{10,20,...,80,85}}[170]
+\spazimuthlabel{{0,15,...,350}}
+\spgeodirection
 \end{tikzpicture}
 
 \vfill\newpage
@@ -399,18 +399,19 @@ The part, which makes the chart nicer, is there:
 To set the altitude scale (and also the altitude lines) equidistance, just use the option \verb|altitude mapping=equidistance|.
 The chart above with same data looks like the chart below with this option.
 
-\marginpar{\texttt{altitude mapping\\ \hfill=equidistance}}
+\marginpar{\texttt{altitude mapping}} \texttt{ = equidistance}
+
 \begin{tikzpicture}[spradius=6,altitude mapping=equidistance]
 \tikzset{
   sun path curve/.style={draw=red!20,thick},
   sun point/.style={radius=2pt,draw=red,fill=red},  
   sun label/.style={below,fill=white,outer sep=4pt,text=red},
 }
-\drawcrosshair
-\drawaltitudecircle{{0,10,...,80,85}}
-\drawazimuthline{{0,10,...,360}}{85}{70}
-\drawazimuthline{{0,5,...,360}}{80}{0}
-\drawazimuthtick
+\spcrosshair
+\spaltitudecircle{{0,10,...,80,85}}
+\spazimuthline{{0,10,...,360}}{85}{70}
+\spazimuthline{{0,5,...,360}}{80}{0}
+\spzimuthtick
 
 \coordinate (P0) at (sunpath cs:azi=98.968673,alt=-0.208672);
 \coordinate (P1) at (sunpath cs:azi=102.009695,alt=2.035492);
@@ -438,9 +439,9 @@ The chart above with same data looks like the chart below with this option.
 \node[sun label,anchor=270-260.810553] at (P7) {18:53};
 \path[sun path curve] (P0) to [curve through={ (P1) .. (P2) .. (P3) .. (P4) .. (P5) .. (P6) }] (P7) ;
 
-\drawaltitudelabel{{10,20,...,80,85}}[170]
-\drawazimuthlabel{{0,15,...,350}}
-\drawgeodirection
+\spaltitudelabel{{10,20,...,80,85}}[170]
+\spazimuthlabel{{0,15,...,350}}
+\spgeodirection
 \end{tikzpicture}
 
 

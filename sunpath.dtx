@@ -26,9 +26,12 @@
 %
 % \iffalse
 %<package>\NeedsTeXFormat{LaTeX2e}[2022/11/01]
-%<package>\ProvidesPackage{sunpath}[2024/10/16 v0.3-Alpha Draw Sun Path]
+%<package>\ProvidesPackage{sunpath}[2024/10/16 v0.5 Draw Sun Path]
 % \fi
 
+% \changes{v0.5}
+%         {2024/10/20}
+%         {replace prefix "draw" in exposed commands by "sp"}
 % \changes{v0.4-Alpha}
 %         {2024/10/20}
 %         {rename option altitude projection to altitude mapping}
@@ -202,13 +205,13 @@
 
 % \subsection{Expose some commands for end-user}
 
-% \DescribeMacro{\drawcrosshair} \oarg{style}
+% \DescribeMacro{\spcrosshair} \oarg{style}
 %
 % Draws a thin line from North to South and a thin line from East to West. 
 % Default value of \oarg{style} is \texttt{sunpath grid}.
 %
 %    \begin{macrocode}
-\NewDocumentCommand\drawcrosshair{O{sunpath grid}}{
+\NewDocumentCommand\spcrosshair{O{sunpath grid}}{
     \draw[#1] (-\spradius,0) -- (\spradius,0);
     \draw[#1] (0,-\spradius) -- (0,\spradius);
 }
@@ -217,7 +220,7 @@
 
 
 
-% \DescribeMacro{\drawgeodirection} \oarg{offset}\oarg{style}
+% \DescribeMacro{\spgeodirection} \oarg{offset}\oarg{style}
 %
 %
 % Puts four geographic directions North, East, South, West around the horinzon line.
@@ -225,7 +228,7 @@
 % Its default value is 22pt. 
 % Set it to zero causes that the directions are set very near to the horizon line.
 %    \begin{macrocode}
-\NewDocumentCommand\drawgeodirection{O{22pt} O{direction label}}{
+\NewDocumentCommand\spgeodirection{O{22pt} O{direction label}}{
   \foreach \dname / \dgrad in {N/0, E/90, S/180, W/270}{
       \tikzmath{
         \polarangle = aziangle(\dgrad);
@@ -239,14 +242,14 @@
 
 
 
-% \DescribeMacro{\drawaltitudecircle}  \marg{range}\oarg{style}
+% \DescribeMacro{\spaltitudecircle}  \marg{range}\oarg{style}
 %
 % Draws altitude circle given by \marg{range}. 
 % The argument \marg{range} must be a valid \TikZ-range, which can be used in \cmd{\foreach}.
 % For example \verb|{{10,20,...,80,85}}|.
 % The argument \oarg{style} define the style of altitude circles, default is \texttt{sunpath~grid}.
 %    \begin{macrocode}
-\NewDocumentCommand\drawaltitudecircle{m O{sunpath grid}}{
+\NewDocumentCommand\spaltitudecircle{m O{sunpath grid}}{
   \foreach \altitude in #1 {
     \coordinate (A) at (sunpath cs:azi=0,alt=\altitude) ;  
     \path[draw,sunpath grid] (0,0) circle[radius=altradius(\altitude)];
@@ -257,7 +260,7 @@
 
 
 
-% \DescribeMacro{\drawaltitudelabel}  \marg{range}\oarg{azimuth}\oarg{style}
+% \DescribeMacro{\spaltitudelabel}  \marg{range}\oarg{azimuth}\oarg{style}
 % 
 % Draws the labels of altitude circles given by \marg{range}. 
 % Range must be an in \TikZ{} valid numeric range which can be used in \cmd{\foreach}.
@@ -266,7 +269,7 @@
 % and typeset with style \oarg{style} (default \texttt{altitude label}).
 %
 %    \begin{macrocode}
-\NewDocumentCommand\drawaltitudelabel{m O{135} O{altitude label}}{
+\NewDocumentCommand\spaltitudelabel{m O{135} O{altitude label}}{
   \foreach \altitude in #1 {
       \coordinate (A) at (sunpath cs:azi=#2,alt=\altitude) ;      
       \node [anchor=east,#3] at (A) {\altitude};  
@@ -277,10 +280,10 @@
 
 
 
-% \DescribeMacro{\drawazimuthlabel}  \marg{range}\oarg{style}
+% \DescribeMacro{\spazimuthlabel}  \marg{range}\oarg{style}
 %
 %    \begin{macrocode}
-\NewDocumentCommand\drawazimuthlabel{m O{azimuth label}}{
+\NewDocumentCommand\spazimuthlabel{m O{azimuth label}}{
   \foreach \azimuth in #1 {
       \tikzmath{
         \polarangle = aziangle(\azimuth);
@@ -294,10 +297,10 @@
 
 
 
-% \DescribeMacro{\drawazimuthline} \marg{range}\marg{start~alt}\marg{end~alt}
+% \DescribeMacro{\spazimuthline} \marg{range}\marg{start~alt}\marg{end~alt}
 %
 %    \begin{macrocode}
-\NewDocumentCommand\drawazimuthline{m m m}{
+\NewDocumentCommand\spazimuthline{m m m}{
   \foreach \azimuth in #1{
       \draw[sunpath grid]
         (sunpath cs:azi=\azimuth,alt={#2}) -- (sunpath cs:azi=\azimuth,alt={#3});
@@ -308,7 +311,7 @@
 
 
 
-% \DescribeMacro{\drawazimuthtick}  \oarg{major}\oarg{minor}\oarg{mid}
+% \DescribeMacro{\spzimuthtick}  \oarg{major}\oarg{minor}\oarg{mid}
 % 
 % Draws ticks along and outside the horizon circle. The optional arguments \oarg{major},
 % \oarg{minor} and \oarg{mid} are the length of major ticks (every 10° from Zero),
@@ -316,7 +319,7 @@
 % Their default values are 6pt, 2.5pt and 5pt.
 %
 %    \begin{macrocode}
-\NewDocumentCommand\drawazimuthtick{O{6pt} O{2.5pt} O{5pt}}{
+\NewDocumentCommand\spzimuthtick{O{6pt} O{2.5pt} O{5pt}}{
   \foreach \azimuth in {10,20,...,360}{
     \tikzmath{      
         \pa = aziangle(\azimuth);

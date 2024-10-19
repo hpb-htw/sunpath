@@ -16,11 +16,11 @@
   sun label/.style={below,fill=white,outer sep=3pt,inner sep=0pt,text=red},
   small alt label/.style={altitude label,font=\scriptsize\sffamily}
 }
-\drawcrosshair
-\drawaltitudecircle{{0,10,...,80,85}}
-\drawazimuthline{{0,10,...,360}}{85}{70}
-\drawazimuthline{{0,5,...,360}}{80}{0}
-\drawazimuthtick
+\spcrosshair
+\spaltitudecircle{{0,10,...,80,85}}
+\spazimuthline{{0,10,...,360}}{85}{70}
+\spazimuthline{{0,5,...,360}}{80}{0}
+\spzimuthtick
 
 \coordinate (P0) at (sunpath cs:azi=98.968673,alt=-0.208672);
 \coordinate (P1) at (sunpath cs:azi=102.009695,alt=2.035492);
@@ -48,9 +48,9 @@
 \node[sun label,anchor=270-260.810553] at (P7) {18:53};
 \path[sun path curve] (P0) to [curve through={ (P1) .. (P2) .. (P3) .. (P4) .. (P5) .. (P6) }] (P7) ;
 
-\drawaltitudelabel{{10,30,40,...,80,85}}[175][small alt label]
-\drawazimuthlabel{{0,15,...,350}}
-\drawgeodirection
+\spaltitudelabel{{10,30,40,...,80,85}}[175][small alt label]
+\spazimuthlabel{{0,15,...,350}}
+\spgeodirection
 \end{tikzpicture}
 \end{document}
 
