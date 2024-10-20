@@ -68,7 +68,7 @@ function check_version_in_dtx(file)
         if check_date_from_dtx_line(release_info) then
             return version
         else 
-            print(string.format("Declared release time `%s' is in the pass", release_info))
+            print(string.format("Declared release time `%s' is in the pass or future", release_info))
         end
     else 
         if read_ok == FILE_NOT_FOUND then

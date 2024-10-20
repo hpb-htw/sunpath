@@ -1,0 +1,2 @@
+* [breaking change] Rename prefix draw to sp in exposed command
+* [intern] let build.lua also check release date
