@@ -33,9 +33,9 @@ function read_version_from_dtx(file)
         end
     end
     if version_line ~= nill then
-        return parse_version_from_dtx_line(version_line), OK
+        return parse_version_from_dtx_line(version_line), version_line, OK
     else
-        return nil, PATTERN_NOT_FOUND
+        return nil, nil, PATTERN_NOT_FOUND
     end
 end
 
@@ -45,10 +45,31 @@ print(x, y)
 ]]--
 
 
+-- release time and declared time in the dtx must in a same day.
+function check_date_from_dtx_line(line)
+    local pattern = "(%d+)/(%d+)/(%d+)"
+    local _,_,y,m,d = string.find(line, pattern)
+    local year = tonumber(y)
+    local month = tonumber(m)
+    local day = tonumber(d)
+    
+        
+    local t = os.time()
+    local d = os.date("*t", t)    
+    local sys_time = os.time({year=d.year, month=d.month, day=d.day, hour=0, min=0, sec=0, isdst=d.isdst})
+    local rel_time = os.time({year=year,   month=month,   day=day,   hour=0, min=0, sec=0, isdst=d.isdst})
+    return sys_time == rel_time
+end
+
+
 function check_version_in_dtx(file)
-    local version, read_ok = read_version_from_dtx(file)
+    local version, release_info, read_ok = read_version_from_dtx(file)
     if version ~= nil then
-        return version
+        if check_date_from_dtx_line(release_info) then
+            return version
+        else 
+            print(string.format("Declared release time `%s' is in the pass", release_info))
+        end
     else 
         if read_ok == FILE_NOT_FOUND then
             print(string.format("File `%s' not found", file))
@@ -56,9 +77,9 @@ function check_version_in_dtx(file)
             print(string.format("No version is found in file `%s'", file))
             print("Please check if the pattern below exists in the given file")
             print(VERSION_CHECK_PATTERN)
-        end
-        os.exit(1)
+        end        
     end
+    os.exit(1)
 end
 
 
@@ -132,6 +153,7 @@ return {
     check_version_in_dtx,
     read_version_from_dtx,
     parse_version_from_dtx_line,
+    check_date_from_dtx_line,
     -- Error code
     OK, FILE_NOT_FOUND, PATTERN_NOT_FOUND
 }
